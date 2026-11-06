@@ -123,6 +123,12 @@ ol.nlist li::marker{color:var(--cardinal);font-weight:600}
 .pnote{color:var(--graphite)}
 .pub.hit{background:var(--rose)}
 .prep .pub{padding-left:.95rem}.prep .pub.lead::before{left:0}
+.prepbox{margin-bottom:2rem}
+.grp{font:600 1.1rem/1.3 var(--serif);margin:0 0 1rem;padding-top:1rem;border-top:1px solid var(--rule)}
+.prepbox .grp{border-top:0;padding-top:0}
+.status{font-weight:600;color:var(--cardinal)}
+.patl{counter-reset:pt}.patl li{position:relative;padding:0 0 1.2rem 2rem;font-size:.92rem;line-height:1.5;counter-increment:pt}
+.patl li::before{content:counter(pt) ".";position:absolute;left:0;top:.1rem;font-weight:600;color:var(--cardinal)}
 @media (max-width:560px){.yr{grid-template-columns:1fr;gap:.25rem}}
 .pat{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
 .pat ol{margin:0;padding-left:1.2rem;font-size:.92rem}
@@ -148,6 +154,7 @@ ol.nlist li::marker{color:var(--cardinal);font-weight:600}
 <a class="brand" href="#home">Woongbi Cho</a>
 <nav aria-label="Pages"><ul class="tabs">
 <li><a href="#research">Research</a></li>
+<li><a href="#patents">Patents</a></li>
 <li><a href="#publications">Publications</a></li>
 <li><a href="#talks">Talks</a></li>
 <li><a href="#awards">Awards</a></li>
@@ -207,6 +214,13 @@ ol.nlist li::marker{color:var(--cardinal);font-weight:600}
 </article>
 <div class="now"><h3>Now at Stanford</h3><p>Designing electromagnetic (EM)-driven soft robotics, polymer assembly mechanisms, and active metamaterials.</p></div>
 </section>
+<section class="view" id="patents" aria-labelledby="h-pat">
+<h2 id="h-pat">Patents</h2>
+<h3 class="sub">Granted (2)</h3>
+<ol class="plist patl"><li><span class="pt-plain">Mid-Wavelength Infrared Polarizer Based on Sulfur-Containing Polymer and Manufacturing Method Thereof</span><span class="pa">J. J. Wie, Z. Ku, <b>W. Cho</b>, and S. Y. Lee</span><span class="pv">Patent No. 10-2940899, Republic of Korea (2026)</span></li><li><span class="pt-plain">Preparation Method of Sulfur-Rich Polymer Using Inverse Vulcanization and Vacuum Assisted Thermal Treatment, and Sulfur-Rich Polymer Preparing Thereby</span><span class="pa">J. J. Wie, <b>W. Cho</b>, and N. Han</span><span class="pv">Patent No. 10-2957615, Republic of Korea (2026)</span></li></ol>
+<h3 class="sub">Pending and filed (4)</h3>
+<ol class="plist patl"><li><span class="pt-plain">Sulfur-Containing Polymer Composites, Preparation Method and Triboelectric Generator Using The Same</span><span class="pa">J. J. Wie, T. Han, <b>W. Cho</b>, and S. Kim</span><span class="pv">Patent application No. 10-2024-0073750, Republic of Korea (2024)</span></li><li><span class="pt-plain">Method for Vacuum-Assisted Thermal Treatment of Sulfur-Rich Polymers with Particle Size Control and Infrared Optical Article Manufactured Thereby</span><span class="pa">J. J. Wie, <b>W. Cho</b>, and S. Park</span><span class="pv">Patent application No. 10-2026-0049911, Republic of Korea (2026)</span></li><li><span class="pt-plain">A Magnetically Actuated Microtextured Polymer Composite Structure, Method for Manufacturing the Same, and Method for Shape Reconfiguration Thereof</span><span class="pa">C. B. Kim, J. J. Wie, S. Jeong, Y. Yoon, H. Moon, <b>W. Cho</b>, and D. W. Lee</span><span class="pv">Patent application No. 10-2026-0064515, Republic of Korea (2026)</span></li><li><span class="pt-plain">Polymer Composite Structure Having Magnetically Driven Microstructure, Method of Manufacturing the Same, and Method of Transforming the Shape Thereof</span><span class="pa">C. B. Kim, J. J. Wie, S. Jeong, Y. Yoon, H. Moon, <b>W. Cho</b>, and D. W. Lee</span><span class="pv">U.S. Patent application No. 19.687,112, filed May 26, 2026</span></li></ol>
+</section>
 <section class="view" id="publications" aria-labelledby="h-pubs">
 <h2 id="h-pubs">Publications</h2>
 <p class="note">You can also find my articles on <a href="https://scholar.google.com/citations?user=oCeRWgoAAAAJ&amp;hl=en">Google Scholar</a>.</p>
@@ -216,6 +230,8 @@ ol.nlist li::marker{color:var(--cardinal);font-weight:600}
 <span class="meta"><span class="legend"><i aria-hidden="true"></i>Highlighted article (first or co-first author)</span>. <b>W. Cho</b> marks my name; † equal contribution; * corresponding author.</span>
 </div>
 <div data-plist>
+<div class="prepbox" data-year id="inprep"><h3 class="grp">In preparation and under review</h3><ol class="plist prep"><li class="pub lead" data-lead="1"><span class="pa">M.-Y. Choi†, <b>W. Cho†</b>, M. J. Bak, S. Kim, J.-H. Na*, J. J. Wie*</span><span class="pv"><span class="status">To be submitted</span>.</span></li><li class="pub lead" data-lead="1"><span class="pa"><b>W. Cho†</b>, M. J. Bak†, S. Kim, M. J. Hahm, J. J. Wie*</span><span class="pv"><span class="status">To be submitted</span>.</span></li><li class="pub" data-lead="0"><span class="pt-plain">Sulfur-Containing Polymers: Synthesis and Applications</span><span class="pa">D. Huang, W. Bai, J. C. Brendel*, E. Y.-X. Chen, <b>W. Cho</b>, J. Dong*, J. Dzubiella*, D. Gayen, S. Groh, H. Huang*, M. Hong*, R. Hu*, X. Li, B. Ma, D.-H. Qu*, W. Ren*, C. Shi*, C.-Y. Shi, Q. Shi, Y. Schütze, Y. Sun, Y. Tao*, J. J. Wie*, L. Xu, T.-J. Yue, C. Zhang*, N. Zheng*, X. Zhang*, H. Huang*, B. Z. Tang*, A. Qin*</span><span class="pv"><i>Sci. China Chem.</i>, <span class="status">Submitted</span>. <span class="pnote">Invited review article.</span></span></li><li class="pub" data-lead="0"><span class="pa">J. G. Lee†, M. J. Hahm†, H. H. Kim, <b>W. Cho</b>, H. Moon, T. Zhang, J. J. Wie*</span><span class="pv"><i>Adv. Mater.</i>, <span class="status">Under review</span>.</span></li><li class="pub lead" data-lead="1"><span class="pa"><b>W. Cho†</b>, S. B. Park†, S. Kim†, M. Lee, G. Y. Bae, M. J. Bak, N.-H. You*, J. J. Wie*</span><span class="pv"><i>Adv. Funct. Mater.</i>, <span class="status">In revision</span>.</span></li></ol></div>
+<h3 class="grp">Published</h3>
 <div class="yr" data-year><h3 class="yr-h">2026</h3><ol class="plist">
 <li id="p-10-1021-acsaom-6c00019" class="pub" data-lead="0"><span class="num">[24]</span><a class="pt" href="https://doi.org/10.1021/acsaom.6c00019">Physically Intelligent Liquid Crystalline Polymers for Soft Robotics and Shape-Reconfigurable Devices</a><span class="pa">M. J. Hahm, <b>W. Cho</b>, J. Jeon, K. Yang, and J. J. Wie*</span><span class="pv"><i>ACS Applied Optical Materials</i> 4, 962-974 (2026).</span> <span class="pnote">Invited Spotlight article.</span></li>
 </ol></div>
@@ -256,10 +272,6 @@ ol.nlist li::marker{color:var(--cardinal);font-weight:600}
 </ol></div>
 </div>
 <p class="note" data-empty hidden>No publications match that search.</p>
-<h3 class="sub" id="inprep">In preparation</h3>
-<ol class="plist prep"><li class="pub lead"><span class="pt-plain">Deborah-Number-Governed Surface Roughness Engineering of Sulfur-Rich Polymer Film for High-Performance Triboelectric Nanogenerators</span><span class="pa"><b>W. Cho†</b>, M. J. Bak†, S. Kim, M. J. Hahm, and J. J. Wie*</span><span class="pnote">To be submitted.</span></li><li class="pub lead"><span class="pt-plain">Thermally Stable Bulk Longwave Infrared Windows from Sulfur-Rich Polymers for Aerial Thermal Imaging via Kinetics-Controlled Vacuum-Assisted Thermal Treatment</span><span class="pa">S. B. Park†, <b>W. Cho†</b>, M. Lee, S. Kim, G. Y. Bae, N.-H. You, and J. J. Wie*</span><span class="pnote">To be submitted (invited article).</span></li></ol>
-<h3 class="sub" id="patents">Patents</h3>
-<div class="pat"><div><h3>Granted</h3><ol><li><b>Mid-Wavelength Infrared Polarizer Based on Sulfur-Containing Polymer and Manufacturing Method Thereof</b><span>Patent No. 10-2940899, Republic of Korea, 2026</span></li><li><b>Preparation Method of Sulfur-Rich Polymer Using Inverse Vulcanization and Vacuum Assisted Thermal Treatment</b><span>Patent No. 10-2957615, Republic of Korea, 2026</span></li></ol></div><div><h3>Pending and filed</h3><ol><li><b>Sulfur-Containing Polymer Composites, Preparation Method and Triboelectric Generator Using The Same</b><span>Application No. 10-2024-0073750, Republic of Korea, 2024</span></li><li><b>Vacuum-Assisted Thermal Treatment of Sulfur-Rich Polymers and Infrared Optical Article</b><span>Application No. 10-2026-0049911, Republic of Korea, 2026</span></li><li><b>Magnetically Actuated Microtextured Polymer Composite Structure</b><span>Application No. 10-2026-0064515, Republic of Korea, 2026</span></li><li><b>Polymer Composite Structure Having Magnetically Driven Microstructure</b><span>U.S. Application No. 19.687,112, filed May 26, 2026</span></li></ol></div></div>
 </section>
 <section class="view" id="talks" aria-labelledby="h-talks">
 <h2 id="h-talks">Talks and presentations</h2>
