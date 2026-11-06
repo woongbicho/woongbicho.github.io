@@ -13,17 +13,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
---paper:#FFFFFF; --ink:#1C1F23; --graphite:#5B636D; --rule:#E4E6E9; --wash:#F7F4F4;
---cardinal:#8C1515; --cardinal-dk:#6E1010; --rose:#F6E7E7; --on-cardinal:#FFFFFF;
---serif:"Newsreader",Georgia,"Times New Roman",serif;
---sans:"Public Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
-color-scheme:light;
-}
-@media (prefers-color-scheme:dark){
-:root{--paper:#141619;--ink:#E8E9EB;--graphite:#A6ADB5;--rule:#2B2F35;--wash:#1C1A1B;
---cardinal:#E39A9A;--cardinal-dk:#5A1212;--rose:#3A2222;--on-cardinal:#FFFFFF;color-scheme:dark}
-}
+:root{--paper:#FFFFFF;--ink:#1C1F23;--graphite:#5B636D;--rule:#E4E6E9;--wash:#F7F4F4;--cardinal:#8C1515;--cardinal-dk:#6E1010;--rose:#F6E7E7;
+--serif:"Newsreader",Georgia,"Times New Roman",serif;--sans:"Public Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--paper:#141619;--ink:#E8E9EB;--graphite:#A6ADB5;--rule:#2B2F35;--wash:#1C1A1B;--cardinal:#E39A9A;--cardinal-dk:#5A1212;--rose:#3A2222;color-scheme:dark}}
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-padding-top:calc(5rem + env(safe-area-inset-top,0px))}
 body{margin:0;background:var(--paper);color:var(--ink);font:400 1rem/1.6 var(--sans);-webkit-font-smoothing:antialiased}
@@ -32,11 +24,12 @@ a:hover{color:var(--cardinal);text-decoration-color:currentColor}
 :focus-visible{outline:2px solid var(--cardinal);outline-offset:3px;border-radius:2px}
 img{max-width:100%;height:auto;display:block}
 .skip{position:absolute;left:-999px}.skip:focus{left:1rem;top:1rem;background:var(--paper);padding:.5rem 1rem;z-index:20}
-/* ---------- burgundy top bar ---------- */
-.bar{position:sticky;top:0;z-index:5;background:#8C1515;color:var(--on-cardinal);padding-top:env(safe-area-inset-top,0px)}
+.muted{color:var(--graphite)}
+/* top bar */
+.bar{position:sticky;top:0;z-index:5;background:#8C1515;color:#fff;padding-top:env(safe-area-inset-top,0px)}
 @media (prefers-color-scheme:dark){.bar{background:var(--cardinal-dk)}}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:#8C1515}
-.bar-in{max-width:64rem;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:2rem;height:3.6rem}
+.bar-in{max-width:76rem;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:2rem;height:3.6rem}
 .brand{font:500 1.3rem/1 var(--serif);color:#fff;text-decoration:none;white-space:nowrap}
 .brand:hover{color:#fff}
 .tabs{list-style:none;margin:0 0 0 auto;padding:0;display:flex;gap:.2rem;overflow-x:auto;scrollbar-width:none}
@@ -45,311 +38,261 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .tabs a:hover{color:#fff;background:rgba(255,255,255,.12)}
 .tabs a[aria-current="page"]{background:#fff;color:#8C1515}
 .tabs a:focus-visible{outline-color:#fff}
-@media (max-width:760px){
-.bar-in{flex-direction:column;align-items:stretch;height:auto;gap:0;padding:0}
-.brand{padding:.85rem 1.25rem .35rem}
-.tabs{margin:0;padding:0 .9rem .6rem}
-.tabs a{padding:.38rem .65rem}
-}
-main{max-width:64rem;margin:0 auto;padding:3rem 1.5rem 4rem;min-width:0}
+@media (max-width:820px){.bar-in{flex-direction:column;align-items:stretch;height:auto;gap:0;padding:0}.brand{padding:.85rem 1.25rem .35rem}.tabs{margin:0;padding:0 .9rem .6rem}.tabs a{padding:.38rem .65rem}}
+/* profile column + content */
+.frame{max-width:76rem;margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:14rem minmax(0,1fr);gap:3.5rem}
+.side{position:sticky;top:3.6rem;align-self:start;padding:2.75rem 0 2rem}
+.portrait{width:9.5rem;aspect-ratio:1;object-fit:cover;border-radius:50%;border:3px solid var(--paper);box-shadow:0 0 0 2px var(--cardinal)}
+.side h1{font:600 1.35rem/1.2 var(--serif);margin:1.1rem 0 .35rem}
+.side .pos{font-size:.88rem;line-height:1.45;color:var(--graphite);margin:0 0 1.1rem}
+.links{list-style:none;margin:0;padding:0;font-size:.9rem}
+.links li{padding:.22rem 0}
+.links a{display:inline-flex;align-items:center;gap:.55rem;text-decoration:none}
+.links svg{width:15px;height:15px;fill:var(--cardinal);flex:none}
+.links a:hover span{text-decoration:underline}
+main{padding:2.75rem 0 4rem;min-width:0}
 .js .view{display:none}.js .view.on{display:block}
-.col{max-width:46rem}
-/* ---------- type ---------- */
-h2{font:600 1.8rem/1.2 var(--serif);color:var(--cardinal);margin:0 0 1.6rem;padding-bottom:.6rem;border-bottom:2px solid var(--cardinal)}
+@media (max-width:820px){
+.frame{display:block;padding:0 1.25rem}
+.side{position:static;padding:1.75rem 0 1.25rem;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:5.5rem 1fr;gap:.25rem 1.1rem;align-items:center}
+.portrait{width:5.5rem;grid-row:span 2}
+.side h1{margin:0}.side .pos{margin:0}
+.links{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:.2rem 1.1rem;margin-top:.9rem}
+main{padding-top:2rem}
+}
+/* type */
+h2{font:600 1.8rem/1.2 var(--serif);color:var(--cardinal);margin:0 0 1.5rem;padding-bottom:.55rem;border-bottom:2px solid var(--cardinal)}
 h3{font:600 1.05rem/1.35 var(--sans);margin:0 0 .4rem}
-.sub{font:600 1.2rem/1.3 var(--serif);color:var(--ink);margin:3rem 0 1rem}
-section.block{margin-top:4rem}
-/* ---------- home ---------- */
-.who{display:grid;grid-template-columns:8rem minmax(0,1fr);gap:1.75rem;align-items:center}
-.portrait{width:8rem;aspect-ratio:1;object-fit:cover;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px var(--cardinal)}
-.who h1{font:500 2.5rem/1.1 var(--serif);margin:0}
-.who h1 small{font-size:.5em;color:var(--graphite);font-weight:400;margin-left:.2em}
-.pos{margin:.45rem 0 .75rem;color:var(--graphite);font-size:.96rem;line-height:1.45}
-.pos b{color:var(--ink);font-weight:600}
-.ext{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem;font-size:.86rem;font-weight:500}
-.ext a{display:block;padding:.28rem .7rem;border:1px solid color-mix(in srgb,var(--cardinal) 40%,transparent);border-radius:999px;color:var(--cardinal);text-decoration:none}
-.ext a:hover{background:var(--cardinal);color:var(--paper)}
-.lede{font:400 clamp(1.35rem,2.4vw,1.75rem)/1.4 var(--serif);margin:2.25rem 0 0;max-width:42rem}
-@media (max-width:560px){.who{grid-template-columns:5.5rem 1fr;gap:1rem}.portrait{width:5.5rem}.who h1{font-size:1.8rem}}
-.summary{margin:0}
-.summary img{width:100%;border-radius:4px}
-.summary figcaption{font-size:.85rem;color:var(--graphite);margin-top:.6rem}
-.shelf{list-style:none;margin:0 -1.5rem 0 0;padding:0 1.5rem .75rem 0;display:grid;grid-auto-flow:column;grid-auto-columns:9rem;gap:1rem;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:thin}
-.shelf li{scroll-snap-align:start;font-size:.8rem;line-height:1.35}
-.shelf img{width:100%;aspect-ratio:520/683;object-fit:cover;border-radius:2px;box-shadow:0 8px 18px -12px rgba(0,0,0,.5)}
-.cj{display:block;margin-top:.55rem;font-weight:600}.cc{display:block;color:var(--graphite)}
+.sub{font:600 1.25rem/1.3 var(--serif);margin:3rem 0 1rem}
+.sub:first-of-type{margin-top:0}
+.prose p{margin:0 0 1rem;max-width:44rem;font-size:1.04rem}
+.note{font-size:.9rem;color:var(--graphite);margin:-.5rem 0 1.5rem}
+/* home figure grid */
+.figs{list-style:none;margin:2.25rem 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.75rem 1.4rem}
+.figs img{width:100%;aspect-ratio:761/1000;object-fit:cover;border:1px solid var(--rule);border-radius:3px}
+.figs a:hover img{border-color:var(--cardinal)}
+.cj{display:block;text-align:center;margin-top:.6rem;font:italic 400 .92rem/1.35 var(--serif);color:var(--graphite)}
+.cc{display:block;text-align:center;font-size:.8rem;color:var(--graphite)}
+@media (max-width:640px){.figs{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem 1rem}}
+/* dated lists */
 .line{list-style:none;margin:0;padding:0}
-.line li{display:grid;grid-template-columns:9.5rem minmax(0,1fr);gap:1.25rem;padding:.85rem 0;border-top:1px solid var(--rule);font-size:.96rem}
+.line li{display:grid;grid-template-columns:8.5rem minmax(0,1fr);gap:1.25rem;padding:.75rem 0;border-top:1px solid var(--rule);font-size:.95rem}
 .line li:last-child{border-bottom:1px solid var(--rule)}
-.line time{color:var(--cardinal);font-weight:600;font-variant-numeric:tabular-nums;font-size:.88rem;padding-top:.08rem}
-.line p{margin:.15rem 0 0;color:var(--graphite)}
-.line.tight li{grid-template-columns:4rem minmax(0,1fr);padding:.5rem 0}
-.line.news li{grid-template-columns:6rem minmax(0,1fr)}
-@media (max-width:560px){.line li,.line.news li{grid-template-columns:1fr;gap:.1rem}}
-/* ---------- about ---------- */
-.prose p{margin:0 0 1rem;max-width:42rem;font-size:1.04rem}
-.contact{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem 2.5rem;font-size:.96rem}
-address{font-style:normal}
-.contact ul{list-style:none;margin:0;padding:0;columns:2;column-gap:1.5rem}.contact li{padding:.15rem 0}
-@media (max-width:640px){.contact{grid-template-columns:1fr}}
-/* ---------- research: alternating figure / text ---------- */
-.theme{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:2.5rem;align-items:center;padding:2.5rem 0;border-bottom:1px solid var(--rule)}
+.line time{color:var(--cardinal);font-weight:600;font-variant-numeric:tabular-nums;font-size:.88rem;padding-top:.06rem}
+.line.short li{grid-template-columns:5rem minmax(0,1fr);padding:.55rem 0}
+@media (max-width:560px){.line li,.line.short li{grid-template-columns:1fr;gap:.1rem}}
+ol.nlist{margin:0;padding-left:1.9rem;font-size:.95rem}
+ol.nlist li{padding:.45rem 0 .45rem .3rem}
+ol.nlist li::marker{color:var(--cardinal);font-weight:600}
+.award{display:inline-block;font-size:.82rem;font-weight:600;color:var(--cardinal);background:var(--rose);padding:.05rem .5rem;border-radius:3px;margin-left:.15rem}
+/* research */
+.theme{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2.25rem;align-items:center;padding:2.25rem 0;border-bottom:1px solid var(--rule)}
+.theme:first-of-type{padding-top:.5rem}
 .theme:nth-of-type(even) .fig{order:2}
-.theme .fig img{width:100%;border-radius:4px}
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
 .pair img{aspect-ratio:761/1000;object-fit:cover;border-radius:2px}
 .crop3w{aspect-ratio:3/2;overflow:hidden;border-radius:4px}
-.theme .fig .crop3w img{width:190%;max-width:none;margin-top:-4%;border-radius:0}
-.theme h3{font:600 1.35rem/1.3 var(--serif);color:var(--cardinal);margin-bottom:.75rem}
-.theme p{margin:0 0 1rem}
-.reps{font-size:.88rem;margin:0}
-.reps b{display:block;font-weight:600;margin-bottom:.15rem}
-.reps a{margin-right:.85rem;white-space:nowrap}
+.crop3w img{width:190%;max-width:none;margin-top:-4%}
 .figcap{font-size:.78rem;color:var(--graphite);margin-top:.45rem}
+.theme h3{font:600 1.3rem/1.3 var(--serif);color:var(--cardinal);margin-bottom:.7rem}
+.theme p{margin:0 0 1rem}
+.reps{font-size:.88rem;margin:0}.reps b{display:block;margin-bottom:.15rem}.reps a{margin-right:.85rem;white-space:nowrap}
 @media (max-width:760px){.theme{grid-template-columns:1fr;gap:1.25rem}.theme:nth-of-type(even) .fig{order:0}}
-.now{margin-top:2.5rem;padding:1.4rem 1.6rem;background:var(--rose);border-left:4px solid var(--cardinal);border-radius:0 4px 4px 0}
+.now{margin-top:2.25rem;padding:1.35rem 1.5rem;background:var(--rose);border-left:4px solid var(--cardinal);border-radius:0 4px 4px 0}
 .now h3{color:var(--cardinal)}.now p{margin:0}
-.kit{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem 2.25rem;margin-top:2.5rem;font-size:.93rem;color:var(--graphite)}
-.kit h3{color:var(--ink)}.kit p{margin:0}
-@media (max-width:640px){.kit{grid-template-columns:1fr}}
-/* ---------- publications ---------- */
+/* publications */
 .ptools{display:flex;flex-wrap:wrap;gap:.75rem 1.25rem;align-items:center;margin:0 0 1.75rem}
 .seg{display:inline-flex;border:1px solid var(--rule);border-radius:999px;padding:2px}
 .seg button{font:500 .88rem var(--sans);color:var(--graphite);background:none;border:0;border-radius:999px;padding:.42rem .95rem;cursor:pointer}
 .seg button[aria-pressed="true"]{background:var(--cardinal);color:var(--paper)}
 .ptools input{font:400 .92rem var(--sans);color:var(--ink);background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:.45rem .75rem;flex:1 1 14rem;max-width:20rem;min-width:0}
 .ptools .meta{font-size:.86rem;color:var(--graphite);flex-basis:100%}
-.legend{display:inline-flex;align-items:center;gap:.4rem}
-.legend i{width:3px;height:1em;background:var(--cardinal);display:inline-block}
+.legend{display:inline-flex;align-items:center;gap:.4rem}.legend i{width:3px;height:1em;background:var(--cardinal);display:inline-block}
 .yr{display:grid;grid-template-columns:4rem minmax(0,1fr);gap:1rem;border-top:1px solid var(--rule);padding-top:1rem;margin-bottom:.75rem}
 .yr-h{font:600 1.15rem/1.4 var(--serif);color:var(--cardinal);margin:0}
 .plist{list-style:none;margin:0;padding:0}
-.pub{position:relative;padding:0 0 1.15rem .95rem;font-size:.9rem;line-height:1.5}
-.pub.lead::before{content:"";position:absolute;left:0;top:.25rem;bottom:1.4rem;width:3px;background:var(--cardinal)}
-.pt{display:block;font:500 1.06rem/1.35 var(--serif);text-decoration:none;color:var(--ink);margin-bottom:.2rem}
+.pub{position:relative;padding:0 0 1.15rem 3.2rem;font-size:.9rem;line-height:1.5}
+.pub.lead::before{content:"";position:absolute;left:2.45rem;top:.25rem;bottom:1.4rem;width:3px;background:var(--cardinal)}
+.num{position:absolute;left:0;top:.1rem;font-size:.82rem;font-weight:600;color:var(--graphite);font-variant-numeric:tabular-nums}
+.pt,.pt-plain{display:block;font:500 1.05rem/1.35 var(--serif);text-decoration:none;color:var(--ink);margin-bottom:.2rem}
 .pt:hover{text-decoration:underline;color:var(--cardinal)}
 .pa{display:block;color:var(--graphite)}.pa b{color:var(--ink);font-weight:600}
 .role{font-weight:600}.role::after{content:". "}
 .pnote{color:var(--graphite)}
 .pub.hit{background:var(--rose)}
-.empty{color:var(--graphite)}
+.prep .pub{padding-left:.95rem}.prep .pub.lead::before{left:0}
 @media (max-width:560px){.yr{grid-template-columns:1fr;gap:.25rem}}
 .pat{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
 .pat ol{margin:0;padding-left:1.2rem;font-size:.92rem}
 .pat li{margin-bottom:.8rem}.pat li b{display:block;font-weight:500}.pat li span{color:var(--graphite);font-size:.86rem}
 @media (max-width:640px){.pat{grid-template-columns:1fr}}
-/* ---------- gallery ---------- */
-.gcov{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(11.5rem,1fr));gap:1.75rem 1.25rem}
-.gcov li{font-size:.84rem;line-height:1.35}
-.gcov img{width:100%;aspect-ratio:520/683;object-fit:cover;border-radius:2px;box-shadow:0 10px 22px -14px rgba(0,0,0,.55)}
-.gaw{display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:1.5rem}
-.gaw figure{margin:0}
-.gaw .imgs{display:flex;gap:.5rem;flex-wrap:wrap}
-.gaw img{height:9rem;width:auto;border:1px solid var(--rule);border-radius:2px;background:#fff}
-.gaw figcaption{font-size:.86rem;margin-top:.55rem}
-.gaw figcaption time{color:var(--cardinal);font-weight:600;margin-right:.4rem}
-.foot{background:var(--wash);border-top:3px solid var(--cardinal)}
-.foot-in{max-width:64rem;margin:0 auto;padding:1.25rem 1.5rem calc(1.5rem + env(safe-area-inset-bottom,0px));font-size:.85rem;color:var(--graphite);display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between}
+/* awards photos */
+.gaw{display:grid;grid-template-columns:repeat(auto-fill,minmax(13rem,1fr));gap:1.5rem;margin-top:1rem}
+.gaw figure{margin:0}.gaw .imgs{display:flex;gap:.5rem;flex-wrap:wrap}
+.gaw img{height:8.5rem;width:auto;border:1px solid var(--rule);border-radius:2px;background:#fff}
+.gaw figcaption{font-size:.85rem;margin-top:.5rem}
+.cvbtn{display:inline-block;background:var(--cardinal);color:var(--paper);text-decoration:none;font-weight:600;padding:.6rem 1.2rem;border-radius:4px;margin-bottom:2.25rem}
+.cvbtn:hover{color:var(--paper);background:color-mix(in srgb,var(--cardinal) 85%,black)}
+.foot{border-top:3px solid var(--cardinal);background:var(--wash)}
+.foot-in{max-width:76rem;margin:0 auto;padding:1.1rem 1.5rem calc(1.4rem + env(safe-area-inset-bottom,0px));font-size:.85rem;color:var(--graphite)}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="bar">
-<div class="bar-in">
+<header class="bar"><div class="bar-in">
 <a class="brand" href="#home">Woongbi Cho</a>
 <nav aria-label="Pages"><ul class="tabs">
-<li><a href="#home">Home</a></li>
-<li><a href="#about">About</a></li>
 <li><a href="#research">Research</a></li>
 <li><a href="#publications">Publications</a></li>
-<li><a href="#gallery">Gallery</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul></nav>
-</div>
-</header>
-<main id="main">
-<!-- ================= HOME ================= -->
-<section class="view" id="home" aria-label="Home">
-<div class="who">
+<li><a href="#talks">Talks</a></li>
+<li><a href="#awards">Awards</a></li>
+<li><a href="#activities">Professional Activities</a></li>
+<li><a href="#cv">CV</a></li>
+</ul></nav></div></header>
+<div class="frame">
+<aside class="side" aria-label="Profile">
 <img class="portrait" src="assets/woongbi-cho-portrait.jpg" width="600" height="600" alt="Portrait of Woongbi Cho">
-<div>
-<h1>Woongbi Cho<small>Ph.D.</small></h1>
-<p class="pos"><b>Postdoctoral Scholar</b>, Mechanical Engineering, Stanford University<br>Soft Intelligent Materials Laboratory (Prof. Ruike Renee Zhao)</p>
-<ul class="ext" aria-label="Profiles">
-<li><a href="mailto:woongbi@stanford.edu">Email</a></li>
-<li><a href="Woongbi_Cho_CV.pdf">CV</a></li>
-<li><a href="https://scholar.google.com/citations?user=oCeRWgoAAAAJ&amp;hl=en">Google Scholar</a></li>
-<li><a href="https://orcid.org/0000-0002-1057-9568">ORCID</a></li>
-<li><a href="https://www.linkedin.com/in/woongbi-cho-2461a8254">LinkedIn</a></li>
+<div><h1>Woongbi Cho, Ph.D.</h1>
+<p class="pos">Postdoctoral Scholar in Mechanical Engineering at Stanford University</p></div>
+<ul class="links">
+<li><a href="mailto:woongbi@stanford.edu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5h20v14H2zM4 7v.5l8 5 8-5V7l-8 5z"/></svg><span>Email</span></a></li>
+<li><a href="https://scholar.google.com/citations?user=oCeRWgoAAAAJ&amp;hl=en"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 1 9l11 6 9-4.9V17h2V9zM5 13.2V17l7 4 7-4v-3.8L12 17z"/></svg><span>Google Scholar</span></a></li>
+<li><a href="https://orcid.org/0000-0002-1057-9568"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM8.3 7.4a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM7.5 10.3h1.6v7.2H7.5zm3.2 0h3c2.4 0 3.8 1.6 3.8 3.6s-1.5 3.6-3.8 3.6h-3zm1.6 1.4v4.4h1.3c1.5 0 2.3-1 2.3-2.2s-.8-2.2-2.3-2.2z"/></svg><span>ORCID</span></a></li>
+<li><a href="https://www.linkedin.com/in/woongbi-cho-2461a8254"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h18v18H3zm3.2 7.2V18h2.4v-7.8zm1.2-3.8a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8zM10.4 10.2V18h2.4v-4c0-1.1.4-1.9 1.5-1.9s1.3.9 1.3 2V18H18v-4.4c0-2.3-1.2-3.5-3-3.5-1.1 0-1.9.5-2.3 1.2v-1.1z"/></svg><span>LinkedIn</span></a></li>
+<li><a href="Woongbi_Cho_CV.pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6zM14 3v5h5M9 12h8v1.5H9zm0 3h8v1.5H9zm0 3h5v1.5H9z"/></svg><span>CV (PDF)</span></a></li>
+<li><a href="https://zhaolab.stanford.edu/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>SIM Lab, Stanford</span></a></li>
 </ul>
-</div>
-</div>
-<p class="lede">I study how polymer chemistry, microstructure, and processing history can be programmed to create soft robotic systems, active metamaterials, infrared optical materials, and sustainable energy devices.</p>
-<section class="block" aria-labelledby="h-sum">
-<h2 id="h-sum">Research summary</h2>
-<figure class="summary">
-<img src="assets/hero-materials-platform.png" width="1717" height="916" decoding="async" alt="Illustration of the research platform: bio-derived feedstocks, sulfur-rich optical and energy materials, and shape-reconfigurable soft devices">
-<figcaption>One materials platform across three directions: shape-reconfigurable devices, waste-sulfur valorization, and bio-derived composites. <a href="#research">See research</a></figcaption>
-</figure>
-</section>
-<section class="block" aria-labelledby="h-news">
-<h2 id="h-news">News and updates</h2>
-<ul class="line news">
-<li><time>05/2026</time><div>Joined Stanford University as a Postdoctoral Scholar in Mechanical Engineering in Prof. Ruike Renee Zhao’s SIM Lab.</div></li>
-<li><time>05/2026</time><div>Recognized with Wiley Top Viewed Article honors in <i>Advanced Materials</i> for the sulfur-rich polymer/MXene triboelectric nanogenerator paper.</div></li>
-<li><time>04/2025</time><div>Received the Prof. Choi Sam Kwon Ph.D. Dissertation Award from the Polymer Society of Korea.</div></li>
-<li><time>03/2025</time><div>Received Hanyang University honors, including the Outstanding Research Achievement Award, Best Paper Award, and Outstanding Ph.D. Dissertation Award.</div></li>
-</ul>
-</section>
-<section class="block" aria-labelledby="h-cov">
-<h2 id="h-cov">Journal covers</h2>
-<ul class="shelf" aria-label="Journal covers"><li><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adma.202507057"><img src="assets/covers/adma-2025-37-44-cover.jpg" width="520" height="683" loading="lazy" decoding="async" alt="Advanced Materials 2025 cover: Closed-loop sustainable 4D printing"></a><span class="cj">Advanced Materials 2025</span><span class="cc">Closed-loop sustainable 4D printing</span></li><li><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adma.202503161"><img src="assets/covers/adma-2025-37-39-cover.jpg" width="520" height="683" loading="lazy" decoding="async" alt="Advanced Materials 2025 cover: Light-fueled magnetic reconfiguration"></a><span class="cj">Advanced Materials 2025</span><span class="cc">Light-fueled magnetic reconfiguration</span></li><li><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adma.202470354"><img src="assets/covers/adma-2024-36-44-cover.jpg" width="520" height="683" loading="lazy" decoding="async" alt="Advanced Materials 2024 cover: Sulfur-rich polymer/MXene TENG"></a><span class="cj">Advanced Materials 2024</span><span class="cc">Sulfur-rich polymer/MXene TENG</span></li><li><a href="https://pubs.acs.org/doi/10.1021/accountsmr.4c00039"><img src="assets/covers/amr-2024-5-5-supplementary-cover.jpg" width="520" height="683" loading="lazy" decoding="async" alt="Accounts of Materials Research 2024 cover: Waste-sulfur valorization"></a><span class="cj">Accounts of Materials Research 2024</span><span class="cc">Waste-sulfur valorization</span></li><li><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adom.202370014"><img src="assets/covers/adom-2023-11-5-cover.jpg" width="520" height="683" loading="lazy" decoding="async" alt="Advanced Optical Materials 2023 cover: Sulfur-rich infrared optics"></a><span class="cj">Advanced Optical Materials 2023</span><span class="cc">Sulfur-rich infrared optics</span></li><li><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/advs.202370201"><img src="assets/covers/advs-2023-10-30-cover.jpg" width="520" height="683" loading="lazy" decoding="async" alt="Advanced Science 2023 cover: Light-fueled rolling locomotors"></a><span class="cj">Advanced Science 2023</span><span class="cc">Light-fueled rolling locomotors</span></li><li><a href="https://pubs.acs.org/doi/10.1021/acsmacrolett.1c00772"><img src="assets/covers/acs-macro-letters-2022-supplementary-cover.jpg" width="520" height="683" loading="lazy" decoding="async" alt="ACS Macro Letters 2022 cover: Height-tunable replica molding"></a><span class="cj">ACS Macro Letters 2022</span><span class="cc">Height-tunable replica molding</span></li><li><a href="https://www.sciencedirect.com/science/article/pii/S1369702121001838"><img src="assets/covers/materials-today-2021-inner-cover-pdf.png" width="520" height="683" loading="lazy" decoding="async" alt="Materials Today 2021 cover: Photomechanical jumping monoliths"></a><span class="cj">Materials Today 2021</span><span class="cc">Photomechanical jumping monoliths</span></li><li><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/admt.202070070"><img src="assets/covers/admt-2020-5-12-cover.jpg" width="520" height="683" loading="lazy" decoding="async" alt="Advanced Materials Technologies 2020 cover: Programmable building blocks"></a><span class="cj">Advanced Materials Technologies 2020</span><span class="cc">Programmable building blocks</span></li></ul>
-</section>
-</section>
-<!-- ================= ABOUT ================= -->
-<section class="view" id="about" aria-labelledby="h-about">
-<h2 id="h-about">About</h2>
+</aside>
+<main id="main">
+<section class="view" id="home" aria-labelledby="h-home">
+<h2 id="h-home">About me</h2>
 <div class="prose">
-<p>I am a polymer materials scientist and postdoctoral scholar in Mechanical Engineering at Stanford University. My research sits at the boundary of soft robotics, polymer chemistry, sustainable materials, and device engineering.</p>
-<p>During my Ph.D. training, I developed shape-reconfigurable liquid crystalline polymer systems, sulfur-rich optical and energy materials, and bio-derived composite processing strategies. These projects share a central idea: materials become more powerful when their chemistry, architecture, and processing history are designed together.</p>
-<p>At Stanford, I build on this foundation to study electromagnetic-driven soft robots, active metamaterials, and polymer assembly mechanisms that translate external fields into useful motion and adaptive function.</p>
+<p>I am a polymer materials scientist and postdoctoral scholar in the Department of Mechanical Engineering at Stanford University, working in Prof. Ruike Renee Zhao’s Soft Intelligent Materials Laboratory. My research sits at the boundary of soft robotics, polymer chemistry, sustainable materials, and device engineering.</p>
+<p>During my Ph.D. at Hanyang University, I developed shape-reconfigurable liquid crystalline polymer systems, sulfur-rich optical and energy materials, and bio-derived composite processing strategies. These projects share a central idea: materials become more powerful when their chemistry, architecture, and processing history are designed together. At Stanford, I study electromagnetic-driven soft robots, active metamaterials, and polymer assembly mechanisms that translate external fields into useful motion and adaptive function.</p>
+<p>Feel free to reach out about collaboration or research.</p>
 </div>
-<h3 class="sub" id="career">Career and education</h3>
-<ol class="line"><li><time>05/2026 – present</time><div><b>Postdoctoral Scholar, Mechanical Engineering</b><p>Stanford University. Soft Intelligent Materials Laboratory, Prof. Ruike Renee Zhao.</p></div></li><li><time>03/2025 – 04/2026</time><div><b>Postdoctoral Research Fellow, Organic and Nano Engineering</b><p>Hanyang University. Advanced Materials Research Laboratory, Prof. Jeong Jae Wie.</p></div></li><li><time>09/2022 – 02/2025</time><div><b>Ph.D., Organic and Nano Engineering</b><p>Hanyang University. Advisor: Prof. Jeong Jae Wie. <a href="assets/woongbi-cho-dissertation.pdf">Dissertation</a>: <i>Liquid Crystalline Polymer Composites-Based 3D Shape-Reconfigurable Platform of Locomotive Electronics</i>.</p></div></li><li><time>03/2019 – 08/2022</time><div><b>Ph.D. studies, Environmental and Polymer Engineering</b><p>Inha University. Transferred to Hanyang University following Prof. J. J. Wie’s relocation.</p></div></li><li><time>03/2013 – 02/2019</time><div><b>B.S., Polymer Science and Engineering</b><p>Inha University. Magna cum laude.</p></div></li></ol>
-<h3 class="sub" id="honors">Honors and awards</h3>
-<ul class="line tight"><li><time>2026</time><span>Wiley Top Viewed Article, Advanced Materials</span></li><li><time>2025</time><span>Prof. Choi Sam Kwon Ph.D. Dissertation Award, Polymer Society of Korea</span></li><li><time>2025</time><span>Outstanding Research Achievement Award, Conference Presentation Division, Hanyang University</span></li><li><time>2025</time><span>Ph.D. Dissertation Award, Hanyang University</span></li><li><time>2025</time><span>Ph.D. Dissertation Award, Research Institute of Industrial Science, Hanyang University</span></li><li><time>2024</time><span>Excellent Oral Presentation Award, Polymer Society of Korea Spring Meeting</span></li><li><time>2024</time><span>Outstanding Research Achievement Award, Publication Division, Hanyang University</span></li><li><time>2024</time><span>BK21 Capstone Design Excellent Award, Hanyang University</span></li><li><time>2024</time><span>Outstanding Discussant Award, Korea Liquid Crystal Conference</span></li><li><time>2023</time><span>Honorable Mention, Polymer Society of Korea Fall Meeting</span></li><li><time>2023</time><span>Best Poster Award Nominee, Materials Research Society Spring Meeting</span></li><li><time>2023</time><span>Excellent Oral Presentation Award, Korea Liquid Crystal Conference</span></li><li><time>2021</time><span>Best Poster Award, International Conference on Advanced Electromaterials</span></li><li><time>2021</time><span>Best Oral Presentation Award, Polymer Society of Korea Spring Meeting</span></li></ul>
-<h3 class="sub" id="talks">Invited talks and seminars</h3>
-<ul class="line"><li><time>03/2026</time><span><b>Korea Research Institute of Chemical Technology (KRICT)</b><br><i>Processing-Structure-Properties Relationships in Polymer Composites: From Commercial Thermoplastics to Multi-functional Polymer Systems.</i></span></li><li><time>11/2025</time><span><b>Korea Liquid Crystal Conference, Young Investigator Oral Presentation</b><br><i>Liquid Crystalline Polymer/2D Material Bilayers for Electrically Conductive, Shape-Reconfigurable Systems.</i></span></li></ul>
-<p style="font-size:.92rem;margin-top:1.25rem">Complete record in the <a href="Woongbi_Cho_CV.pdf">CV (PDF)</a>.</p>
+<ul class="figs" aria-label="Journal covers from published work"><li><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adma.202507057"><img src="assets/covers/adma-2025-37-44-cover.jpg" alt="Advanced Materials, 2025 cover: Closed-loop sustainable 4D printing" loading="lazy" decoding="async"></a><span class="cj">Advanced Materials, 2025</span><span class="cc">Closed-loop sustainable 4D printing</span></li><li><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adma.202503161"><img src="assets/covers/adma-2025-37-39-cover.jpg" alt="Advanced Materials, 2025 cover: Light-fueled magnetic reconfiguration" loading="lazy" decoding="async"></a><span class="cj">Advanced Materials, 2025</span><span class="cc">Light-fueled magnetic reconfiguration</span></li><li><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adma.202470354"><img src="assets/covers/adma-2024-36-44-cover.jpg" alt="Advanced Materials, 2024 cover: Sulfur-rich polymer/MXene TENG" loading="lazy" decoding="async"></a><span class="cj">Advanced Materials, 2024</span><span class="cc">Sulfur-rich polymer/MXene TENG</span></li><li><a href="https://pubs.acs.org/doi/10.1021/accountsmr.4c00039"><img src="assets/covers/amr-2024-5-5-supplementary-cover.jpg" alt="Accounts of Materials Research, 2024 cover: Waste-sulfur valorization" loading="lazy" decoding="async"></a><span class="cj">Accounts of Materials Research, 2024</span><span class="cc">Waste-sulfur valorization</span></li><li><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adom.202370014"><img src="assets/covers/adom-2023-11-5-cover.jpg" alt="Advanced Optical Materials, 2023 cover: Sulfur-rich infrared optics" loading="lazy" decoding="async"></a><span class="cj">Advanced Optical Materials, 2023</span><span class="cc">Sulfur-rich infrared optics</span></li><li><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/advs.202370201"><img src="assets/covers/advs-2023-10-30-cover.jpg" alt="Advanced Science, 2023 cover: Light-fueled rolling locomotors" loading="lazy" decoding="async"></a><span class="cj">Advanced Science, 2023</span><span class="cc">Light-fueled rolling locomotors</span></li><li><a href="https://pubs.acs.org/doi/10.1021/acsmacrolett.1c00772"><img src="assets/covers/acs-macro-letters-2022-supplementary-cover.jpg" alt="ACS Macro Letters, 2022 cover: Height-tunable replica molding" loading="lazy" decoding="async"></a><span class="cj">ACS Macro Letters, 2022</span><span class="cc">Height-tunable replica molding</span></li><li><a href="https://www.sciencedirect.com/science/article/pii/S1369702121001838"><img src="assets/covers/materials-today-2021-inner-cover-pdf.png" alt="Materials Today, 2021 cover: Photomechanical jumping monoliths" loading="lazy" decoding="async"></a><span class="cj">Materials Today, 2021</span><span class="cc">Photomechanical jumping monoliths</span></li><li><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/admt.202070070"><img src="assets/covers/admt-2020-5-12-cover.jpg" alt="Advanced Materials Technologies, 2020 cover: Programmable building blocks" loading="lazy" decoding="async"></a><span class="cj">Advanced Materials Technologies, 2020</span><span class="cc">Programmable building blocks</span></li></ul>
+<h3 class="sub" style="margin-top:3rem">News</h3>
+<ul class="line short">
+<li><time>05/2026</time><span>Joined Stanford University as a Postdoctoral Scholar in Mechanical Engineering in Prof. Ruike Renee Zhao’s SIM Lab.</span></li>
+<li><time>05/2026</time><span>Recognized with Wiley Top Viewed Article honors in <i>Advanced Materials</i> for the sulfur-rich polymer/MXene triboelectric nanogenerator paper.</span></li>
+<li><time>04/2025</time><span>Received the Prof. Choi Sam Kwon Ph.D. Dissertation Award from the Polymer Society of Korea.</span></li>
+<li><time>03/2025</time><span>Received Hanyang University honors, including the Outstanding Research Achievement Award, Best Paper Award, and Outstanding Ph.D. Dissertation Award.</span></li>
+</ul>
 </section>
-<!-- ================= RESEARCH ================= -->
 <section class="view" id="research" aria-labelledby="h-research">
-<h2 id="h-research">Research interests</h2>
+<h2 id="h-research">Research</h2>
 <article class="theme">
-<div class="fig"><div class="pair" role="img" aria-label="Cover images: programmable building blocks (Adv. Mater. Technol. 2020) and light-fueled magnetic reconfiguration (Adv. Mater. 2025)"><img src="assets/covers/admt-2020-5-12-cover.jpg" alt="" loading="lazy" decoding="async"><img src="assets/covers/adma-2025-37-39-cover.jpg" alt="" loading="lazy" decoding="async"></div><p class="figcap">Covers: Adv. Mater. Technol. 2020; Adv. Mater. 2025.</p></div>
-<div>
-<h3>Shape-reconfigurable devices and active metamaterials</h3>
+<div class="fig"><div class="pair" role="img" aria-label="Cover images: programmable building blocks (Adv. Mater. Technol. 2020) and light-fueled magnetic reconfiguration (Adv. Mater. 2025)"><img src="assets/covers/admt-2020-5-12-cover.jpg" alt="" loading="lazy"><img src="assets/covers/adma-2025-37-39-cover.jpg" alt="" loading="lazy"></div><p class="figcap">Covers: Adv. Mater. Technol. 2020; Adv. Mater. 2025.</p></div>
+<div><h3>Shape-reconfigurable devices and active metamaterials</h3>
 <p>Liquid crystalline polymers, covalent adaptable networks, stiffness gradients, and magnetic/light-responsive composites that encode motion, snap-through, locomotion, and adaptive surface function directly into material architecture.</p>
-<p class="reps"><b>Representative papers</b><a href="#p-10-1126-sciadv-adx8301">Science Advances 2025</a> <a href="#p-10-1016-j-nanoen-2023-108953">Nano Energy 2023</a> <a href="#p-10-1002-adfm-202102106">Adv. Funct. Mater. 2021</a> <a href="#p-10-1002-admt-202000758">Adv. Mater. Technol. 2020</a></p>
-</div>
+<p class="reps"><b>Representative papers</b><a href="#p-10-1126-sciadv-adx8301">Science Advances 2025</a> <a href="#p-10-1016-j-nanoen-2023-108953">Nano Energy 2023</a> <a href="#p-10-1002-adfm-202102106">Adv. Funct. Mater. 2021</a> <a href="#p-10-1002-admt-202000758">Adv. Mater. Technol. 2020</a></p></div>
 </article>
 <article class="theme">
-<div class="fig"><div class="pair" role="img" aria-label="Cover images: sulfur-rich polymer/MXene TENG (Adv. Mater. 2024) and sulfur-rich infrared optics (Adv. Optical Mater. 2023)"><img src="assets/covers/adma-2024-36-44-cover.jpg" alt="" loading="lazy" decoding="async"><img src="assets/covers/adom-2023-11-5-cover.jpg" alt="" loading="lazy" decoding="async"></div><p class="figcap">Covers: Adv. Mater. 2024; Adv. Optical Mater. 2023.</p></div>
-<div>
-<h3>Waste-sulfur valorization for optics and energy</h3>
+<div class="fig"><div class="pair" role="img" aria-label="Cover images: sulfur-rich polymer/MXene TENG (Adv. Mater. 2024) and sulfur-rich infrared optics (Adv. Optical Mater. 2023)"><img src="assets/covers/adma-2024-36-44-cover.jpg" alt="" loading="lazy"><img src="assets/covers/adom-2023-11-5-cover.jpg" alt="" loading="lazy"></div><p class="figcap">Covers: Adv. Mater. 2024; Adv. Optical Mater. 2023.</p></div>
+<div><h3>Waste-sulfur valorization for optics and energy</h3>
 <p>Sulfur-rich polymers that transform petroleum-refining byproducts into high-index infrared optics, MWIR polarizers, 4D-printable networks, and PFAS-free triboelectric generators with MXene-segregated charge pathways.</p>
-<p class="reps"><b>Representative papers</b><a href="#p-10-1002-adma-202404163">Advanced Materials 2024</a> <a href="#p-10-1021-accountsmr-4c00039">Acc. Mater. Res. 2024</a> <a href="#p-10-1002-adma-202209377">Advanced Materials 2023</a> <a href="#p-10-1002-adom-202202432">Adv. Optical Mater. 2023</a></p>
-</div>
+<p class="reps"><b>Representative papers</b><a href="#p-10-1002-adma-202404163">Advanced Materials 2024</a> <a href="#p-10-1021-accountsmr-4c00039">Acc. Mater. Res. 2024</a> <a href="#p-10-1002-adma-202209377">Advanced Materials 2023</a> <a href="#p-10-1002-adom-202202432">Adv. Optical Mater. 2023</a></p></div>
 </article>
 <article class="theme">
-<div class="fig"><div class="crop3w"><img src="assets/hero-materials-platform.png" width="1080" height="720" loading="lazy" alt="Illustration of cellulose, lignin, and biomass feedstocks processed into polymer films"></div><p class="figcap">Illustration.</p></div>
-<div>
-<h3>Bio-derived polymer composite processing</h3>
+<div class="fig"><div class="crop3w"><img src="assets/hero-materials-platform.png" alt="Illustration of cellulose, lignin, and biomass feedstocks" loading="lazy"></div><p class="figcap">Illustration.</p></div>
+<div><h3>Bio-derived polymer composite processing</h3>
 <p>Cellulose-, lignin-, and biomass-derived composite routes that connect functional group chemistry, compounding, foam/film processing, and structure–property–performance relationships for sustainable manufacturing.</p>
-<p class="reps"><b>Representative papers</b><a href="#p-10-1007-s10570-023-05335-0">Cellulose 2023</a> <a href="#p-10-1016-j-cej-2024-156142">Chem. Eng. J. 2024</a></p>
-</div>
+<p class="reps"><b>Representative papers</b><a href="#p-10-1007-s10570-023-05335-0">Cellulose 2023</a> <a href="#p-10-1016-j-cej-2024-156142">Chem. Eng. J. 2024</a></p></div>
 </article>
-<div class="now">
-<h3>Now at Stanford</h3>
-<p>Building on this foundation, I study electromagnetic-driven soft robots, active metamaterials, and polymer assembly mechanisms that translate external fields into useful motion and adaptive function.</p>
-</div>
-<div class="kit">
-<div><h3>Materials</h3><p>Liquid crystalline polymer networks, sulfur-rich polymers, covalent adaptable networks, MXene composites, reduced graphene oxide patterns, cellulose derivatives, lignin polyurethane foams, and thermoplastic polyurethane composites.</p></div>
-<div><h3>Methods</h3><p>Inverse vulcanization, vacuum-assisted thermal treatment, microtexturing, replica molding, 4D printing, IR optical characterization, triboelectric device testing, electromagnetic and magnetic actuation, and processing–structure–property mapping.</p></div>
-</div>
+<div class="now"><h3>Now at Stanford</h3><p>Designing electromagnetic (EM)-driven soft robotics, polymer assembly mechanisms, and active metamaterials.</p></div>
 </section>
-<!-- ================= PUBLICATIONS ================= -->
 <section class="view" id="publications" aria-labelledby="h-pubs">
 <h2 id="h-pubs">Publications</h2>
+<p class="note">You can also find my articles on <a href="https://scholar.google.com/citations?user=oCeRWgoAAAAJ&amp;hl=en">Google Scholar</a>.</p>
 <div class="ptools">
-<div class="seg" role="group" aria-label="Filter publications">
-<button type="button" data-f="all" aria-pressed="true">All 24</button>
-<button type="button" data-f="lead" aria-pressed="false">Highlighted articles 10</button>
-</div>
+<div class="seg" role="group" aria-label="Filter publications"><button type="button" data-f="all" aria-pressed="true">All 24</button><button type="button" data-f="lead" aria-pressed="false">Highlighted articles 10</button></div>
 <input type="search" placeholder="Search title, author, journal" aria-label="Search publications" data-q>
-<span class="meta"><span class="legend"><i aria-hidden="true"></i>Highlighted article (first or co-first author)</span>. <b>W. Cho</b> marks my name; † equal contribution; * corresponding author. Full record on <a href="https://scholar.google.com/citations?user=oCeRWgoAAAAJ&amp;hl=en">Google Scholar</a>.</span>
+<span class="meta"><span class="legend"><i aria-hidden="true"></i>Highlighted article (first or co-first author)</span>. <b>W. Cho</b> marks my name; † equal contribution; * corresponding author.</span>
 </div>
 <div data-plist>
 <div class="yr" data-year><h3 class="yr-h">2026</h3><ol class="plist">
-<li id="p-10-1021-acsaom-6c00019" class="pub" data-lead="0"><a class="pt" href="https://doi.org/10.1021/acsaom.6c00019">Physically Intelligent Liquid Crystalline Polymers for Soft Robotics and Shape-Reconfigurable Devices</a><span class="pa">M. J. Hahm, <b>W. Cho</b>, J. Jeon, K. Yang, and J. J. Wie*</span><span class="pv"><i>ACS Applied Optical Materials</i> 4, 962-974 (2026).</span> <span class="pnote">Invited Spotlight article.</span></li>
+<li id="p-10-1021-acsaom-6c00019" class="pub" data-lead="0"><span class="num">[24]</span><a class="pt" href="https://doi.org/10.1021/acsaom.6c00019">Physically Intelligent Liquid Crystalline Polymers for Soft Robotics and Shape-Reconfigurable Devices</a><span class="pa">M. J. Hahm, <b>W. Cho</b>, J. Jeon, K. Yang, and J. J. Wie*</span><span class="pv"><i>ACS Applied Optical Materials</i> 4, 962-974 (2026).</span> <span class="pnote">Invited Spotlight article.</span></li>
 </ol></div>
 <div class="yr" data-year><h3 class="yr-h">2025</h3><ol class="plist">
-<li id="p-10-1126-sciadv-adx8301" class="pub lead" data-lead="1"><a class="pt" href="https://doi.org/10.1126/sciadv.adx8301">Spatially Patterned Stiffness Variation in a Light-Triggered Jumper for Symmetry Breaking and High Snap-Through Efficiency</a><span class="pa">M. J. Hahm†, <b>W. Cho†</b>, J. Jeon, H.-R. Kim, T. Zhang, and J. J. Wie*</span><span class="pv"><i>Science Advances</i> 11, eadx8301 (2025).</span> <span class="role">Co-first author</span></li>
-<li id="p-10-1002-adma-202503161" class="pub" data-lead="0"><a class="pt" href="https://doi.org/10.1002/adma.202503161">Light-Fueled In-Operando Shape Reconfiguration, Fixation, and Recovery of Magnetically Actuated Microtextured Covalent Adaptable Networks</a><span class="pa">Y. Yoon†, H. Moon†, <b>W. Cho</b>, D. Lee, S. Jeong*, J. J. Wie*, and C. B. Kim*</span><span class="pv"><i>Advanced Materials</i> 37, 2503161 (2025).</span> <span class="pnote">Front cover article.</span></li>
-<li id="p-10-1002-adfm-202422569" class="pub" data-lead="0"><a class="pt" href="https://doi.org/10.1002/adfm.202422569">Disulfide Glass: An Optical Polymer for Commodity Plastics, Precision Optics, and Photonics</a><span class="pa">J. Molineux, S. W. Durfee, R. Hyde, M. C. Malaker, J. P. Narr, K.-J. Kim, R. Himmelhuber, Y.-J. Kim, M.-G. Bog, B. Jeong, <b>W. Cho</b>, J. J. Wie, N. B. Krishnan, Y. Y. Yang, R. A. Norwood*, and J. Pyun*</span><span class="pv"><i>Advanced Functional Materials</i> 35, 2422569 (2025).</span> </li>
-<li id="p-10-1002-adma-202418149" class="pub" data-lead="0"><a class="pt" href="https://doi.org/10.1002/adma.202418149">Photopolymer Resins from Sulfenyl Chloride Commodity Chemicals for Plastic Optics, Photopatterning and 3D-Printing</a><span class="pa">C. Olikagu, S. Khoshsorour, S. D. Dulam, H.-S. Yu, N. A. Graham, K.-J. Kim, B. Jeong, J. L. Hedrick, A. Bunnag-Stoner, K. Cheng, B. L. Batchelor, <b>W. Cho</b>, S. B. Park, J. J. Wie, Y.-J. Kim, M.-G. Bog, N. B. Krishnan, Y. Y. Yang, J. T. Njardarson, R. A. Norwood*, and J. Pyun*</span><span class="pv"><i>Advanced Materials</i> 37, 2418149 (2025).</span> </li>
-<li id="p-10-1002-adma-202507057" class="pub" data-lead="0"><a class="pt" href="https://doi.org/10.1002/adma.202507057">Closed-Loop and Sustainable 4D Printing of Multi-Stimuli-Responsive Sulfur-Rich Polymer Composites for Autonomous Task Execution</a><span class="pa">J. H. Hwang†, S. Won†, J. M. Lee, <b>W. Cho</b>, S. Park, H. Kim, C.-G. Chae, W. Lee, D.-G. Kim*, J. J. Wie*, and Y. S. Kim*</span><span class="pv"><i>Advanced Materials</i> 37, e07057 (2025).</span> <span class="pnote">Front cover article.</span></li>
+<li id="p-10-1126-sciadv-adx8301" class="pub lead" data-lead="1"><span class="num">[23]</span><a class="pt" href="https://doi.org/10.1126/sciadv.adx8301">Spatially Patterned Stiffness Variation in a Light-Triggered Jumper for Symmetry Breaking and High Snap-Through Efficiency</a><span class="pa">M. J. Hahm†, <b>W. Cho†</b>, J. Jeon, H.-R. Kim, T. Zhang, and J. J. Wie*</span><span class="pv"><i>Science Advances</i> 11, eadx8301 (2025).</span> <span class="role">Co-first author</span><span class="pnote">Featured in TechXplore.</span></li>
+<li id="p-10-1002-adma-202503161" class="pub" data-lead="0"><span class="num">[22]</span><a class="pt" href="https://doi.org/10.1002/adma.202503161">Light-Fueled In-Operando Shape Reconfiguration, Fixation, and Recovery of Magnetically Actuated Microtextured Covalent Adaptable Networks</a><span class="pa">Y. Yoon†, H. Moon†, <b>W. Cho</b>, D. Lee, S. Jeong*, J. J. Wie*, and C. B. Kim*</span><span class="pv"><i>Advanced Materials</i> 37, 2503161 (2025).</span> <span class="pnote">Front cover article.</span></li>
+<li id="p-10-1002-adfm-202422569" class="pub" data-lead="0"><span class="num">[21]</span><a class="pt" href="https://doi.org/10.1002/adfm.202422569">Disulfide Glass: An Optical Polymer for Commodity Plastics, Precision Optics, and Photonics</a><span class="pa">J. Molineux, S. W. Durfee, R. Hyde, M. C. Malaker, J. P. Narr, K.-J. Kim, R. Himmelhuber, Y.-J. Kim, M.-G. Bog, B. Jeong, <b>W. Cho</b>, J. J. Wie, N. B. Krishnan, Y. Y. Yang, R. A. Norwood*, and J. Pyun*</span><span class="pv"><i>Advanced Functional Materials</i> 35, 2422569 (2025).</span> </li>
+<li id="p-10-1002-adma-202418149" class="pub" data-lead="0"><span class="num">[20]</span><a class="pt" href="https://doi.org/10.1002/adma.202418149">Photopolymer Resins from Sulfenyl Chloride Commodity Chemicals for Plastic Optics, Photopatterning and 3D-Printing</a><span class="pa">C. Olikagu, S. Khoshsorour, S. D. Dulam, H.-S. Yu, N. A. Graham, K.-J. Kim, B. Jeong, J. L. Hedrick, A. Bunnag-Stoner, K. Cheng, B. L. Batchelor, <b>W. Cho</b>, S. B. Park, J. J. Wie, Y.-J. Kim, M.-G. Bog, N. B. Krishnan, Y. Y. Yang, J. T. Njardarson, R. A. Norwood*, and J. Pyun*</span><span class="pv"><i>Advanced Materials</i> 37, 2418149 (2025).</span> </li>
+<li id="p-10-1002-adma-202507057" class="pub" data-lead="0"><span class="num">[19]</span><a class="pt" href="https://doi.org/10.1002/adma.202507057">Closed-Loop and Sustainable 4D Printing of Multi-Stimuli-Responsive Sulfur-Rich Polymer Composites for Autonomous Task Execution</a><span class="pa">J. H. Hwang†, S. Won†, J. M. Lee, <b>W. Cho</b>, S. Park, H. Kim, C.-G. Chae, W. Lee, D.-G. Kim*, J. J. Wie*, and Y. S. Kim*</span><span class="pv"><i>Advanced Materials</i> 37, e07057 (2025).</span> <span class="pnote">Front cover article.</span></li>
 </ol></div>
 <div class="yr" data-year><h3 class="yr-h">2024</h3><ol class="plist">
-<li id="p-10-1002-adma-202404163" class="pub lead" data-lead="1"><a class="pt" href="https://doi.org/10.1002/adma.202404163">High-Performance Yet Sustainable Triboelectric Nanogenerator Based on Sulfur-Rich Polymer Composite with MXene Segregated Structure</a><span class="pa"><b>W. Cho†</b>, S. Kim†, H. Lee, N. Han, H. Kim, M. Lee*, T. H. Han*, and J. J. Wie*</span><span class="pv"><i>Advanced Materials</i> 36, 2404163 (2024).</span> <span class="role">Co-first author</span><span class="pnote">Back cover article.</span></li>
-<li id="p-10-1021-accountsmr-4c00039" class="pub lead" data-lead="1"><a class="pt" href="https://doi.org/10.1021/accountsmr.4c00039">Value-Addition of Wastes from Petroleum Refining Process: Sulfur-Rich Polymers for Sustainable and High-Performance Optical and Energy Applications</a><span class="pa"><b>W. Cho</b>, S. Kim, and J. J. Wie*</span><span class="pv"><i>Accounts of Materials Research</i> 5, 625-639 (2024).</span> <span class="role">First author</span><span class="pnote">Invited review; supplementary cover article.</span></li>
-<li id="p-10-1016-j-cej-2024-156142" class="pub" data-lead="0"><a class="pt" href="https://doi.org/10.1016/j.cej.2024.156142">Green Co-Solvent-Assisted One-Pot Synthesis of High-Performance Flexible Lignin Polyurethane Foam</a><span class="pa">M. Zhang, S. Jeong, <b>W. Cho</b>, J. Ryu, B. Zhang, P. Crovella, A. J. Ragauskas, J. J. Wie*, and C. G. Yoo*</span><span class="pv"><i>Chemical Engineering Journal</i> 499, 156142 (2024).</span> </li>
-<li id="p-10-1016-j-snb-2023-135092" class="pub" data-lead="0"><a class="pt" href="https://doi.org/10.1016/j.snb.2023.135092">Structure-Property-Actuation Relationships of Shape-Fixable Magnetic Vitrimer Micropillar Arrays</a><span class="pa">H. Moon†, J. G. Lee†, <b>W. Cho</b>, J. Jeon, J. E. Park, and J. J. Wie*</span><span class="pv"><i>Sensors and Actuators B: Chemical</i> 402, 135092 (2024).</span> </li>
-<li id="p-10-1002-adma-202309518" class="pub" data-lead="0"><a class="pt" href="https://doi.org/10.1002/adma.202309518">Programming Anisotropic Functionality of 3D Microdenticles by Staggered-Overlapped and Multilayered Microarchitectures</a><span class="pa">J. E. Park, H. Je, C. R. Kim, S. Park, Y. Yu, <b>W. Cho</b>, S. Won, D. J. Kang, T. H. Han, R. Kwak, S. G. Lee*, S. Kim*, and J. J. Wie*</span><span class="pv"><i>Advanced Materials</i> 36, 2309518 (2024).</span> </li>
+<li id="p-10-1002-adma-202404163" class="pub lead" data-lead="1"><span class="num">[18]</span><a class="pt" href="https://doi.org/10.1002/adma.202404163">High-Performance Yet Sustainable Triboelectric Nanogenerator Based on Sulfur-Rich Polymer Composite with MXene Segregated Structure</a><span class="pa"><b>W. Cho†</b>, S. Kim†, H. Lee, N. Han, H. Kim, M. Lee*, T. H. Han*, and J. J. Wie*</span><span class="pv"><i>Advanced Materials</i> 36, 2404163 (2024).</span> <span class="role">Co-first author</span><span class="pnote">Back cover article.</span></li>
+<li id="p-10-1021-accountsmr-4c00039" class="pub lead" data-lead="1"><span class="num">[17]</span><a class="pt" href="https://doi.org/10.1021/accountsmr.4c00039">Value-Addition of Wastes from Petroleum Refining Process: Sulfur-Rich Polymers for Sustainable and High-Performance Optical and Energy Applications</a><span class="pa"><b>W. Cho</b>, S. Kim, and J. J. Wie*</span><span class="pv"><i>Accounts of Materials Research</i> 5, 625-639 (2024).</span> <span class="role">First author</span><span class="pnote">Invited review; supplementary cover article.</span></li>
+<li id="p-10-1016-j-cej-2024-156142" class="pub" data-lead="0"><span class="num">[16]</span><a class="pt" href="https://doi.org/10.1016/j.cej.2024.156142">Green Co-Solvent-Assisted One-Pot Synthesis of High-Performance Flexible Lignin Polyurethane Foam</a><span class="pa">M. Zhang, S. Jeong, <b>W. Cho</b>, J. Ryu, B. Zhang, P. Crovella, A. J. Ragauskas, J. J. Wie*, and C. G. Yoo*</span><span class="pv"><i>Chemical Engineering Journal</i> 499, 156142 (2024).</span> </li>
+<li id="p-10-1016-j-snb-2023-135092" class="pub" data-lead="0"><span class="num">[15]</span><a class="pt" href="https://doi.org/10.1016/j.snb.2023.135092">Structure-Property-Actuation Relationships of Shape-Fixable Magnetic Vitrimer Micropillar Arrays</a><span class="pa">H. Moon†, J. G. Lee†, <b>W. Cho</b>, J. Jeon, J. E. Park, and J. J. Wie*</span><span class="pv"><i>Sensors and Actuators B: Chemical</i> 402, 135092 (2024).</span> </li>
+<li id="p-10-1002-adma-202309518" class="pub" data-lead="0"><span class="num">[14]</span><a class="pt" href="https://doi.org/10.1002/adma.202309518">Programming Anisotropic Functionality of 3D Microdenticles by Staggered-Overlapped and Multilayered Microarchitectures</a><span class="pa">J. E. Park, H. Je, C. R. Kim, S. Park, Y. Yu, <b>W. Cho</b>, S. Won, D. J. Kang, T. H. Han, R. Kwak, S. G. Lee*, S. Kim*, and J. J. Wie*</span><span class="pv"><i>Advanced Materials</i> 36, 2309518 (2024).</span> <span class="pnote">Featured in Phys.org.</span></li>
 </ol></div>
 <div class="yr" data-year><h3 class="yr-h">2023</h3><ol class="plist">
-<li id="p-10-1016-j-nanoen-2023-108953" class="pub lead" data-lead="1"><a class="pt" href="https://doi.org/10.1016/j.nanoen.2023.108953">Multi-Functional Locomotion of Collectively Assembled Shape-Reconfigurable Electronics</a><span class="pa"><b>W. Cho†</b>, D. J. Kang†, M. J. Hahm, J. Jeon, D.-G. Kim, Y. S. Kim, T. H. Han*, and J. J. Wie*</span><span class="pv"><i>Nano Energy</i> 118, 108953 (2023).</span> <span class="role">Co-first author</span></li>
-<li id="p-10-1016-j-eurpolymj-2023-112579" class="pub" data-lead="0"><a class="pt" href="https://doi.org/10.1016/j.eurpolymj.2023.112579">Curing Kinetics and Structure-Property Relationship of Moisture-Cured One-Component Polyurethane Adhesives</a><span class="pa">H. Moon, J. E. Park, <b>W. Cho</b>, J. Jeon, and J. J. Wie*</span><span class="pv"><i>European Polymer Journal</i> 201, 112579 (2023).</span> </li>
-<li id="p-10-1002-adom-202202432" class="pub lead" data-lead="1"><a class="pt" href="https://doi.org/10.1002/adom.202202432">A Microphase Separation Strategy for the Infrared Transparency-Thermomechanical Property Conundrum in Sulfur-Rich Copolymers</a><span class="pa">J. H. Hwang†, S. H. Kim†, <b>W. Cho†</b>, W. Lee, S. Park, Y. S. Kim, J.-C. Lee, K. J. Lee*, J. J. Wie*, and D.-G. Kim*</span><span class="pv"><i>Advanced Optical Materials</i> 11, 2202432 (2023).</span> <span class="role">Co-first author</span><span class="pnote">Inside front cover article.</span></li>
-<li id="p-10-1002-adma-202209377" class="pub lead" data-lead="1"><a class="pt" href="https://doi.org/10.1002/adma.202209377">Highly Sensitive and Cost-Effective Polymeric-Sulfur-Based Mid-Wavelength Infrared Linear Polarizers with Tailored Fabry-Perot Resonance</a><span class="pa"><b>W. Cho†</b>, J. Hwang†, S. Y. Lee†, J. Park, N. Han, C. H. Lee, S.-W. Kang, A. Urbas, J. O. Kim, Z. Ku*, and J. J. Wie*</span><span class="pv"><i>Advanced Materials</i> 35, 2209377 (2023).</span> <span class="role">Co-first author</span></li>
-<li id="p-10-1039-d2py01390h" class="pub lead" data-lead="1"><a class="pt" href="https://doi.org/10.1039/d2py01390h">Enhancement of Thermomechanical Properties of Sulfur-Rich Polymers by Post-Thermal Treatment</a><span class="pa">N. Han†, <b>W. Cho†</b>, J. H. Hwang, S. Won, D.-G. Kim*, and J. J. Wie*</span><span class="pv"><i>Polymer Chemistry</i> 14, 943-951 (2023).</span> <span class="role">Co-first author</span><span class="pnote">Invited themed collection.</span></li>
-<li id="p-10-1007-s10570-023-05335-0" class="pub lead" data-lead="1"><a class="pt" href="https://doi.org/10.1007/s10570-023-05335-0">Functional Group Effect of Chemically Modified Microcrystalline Methyl Cellulose on Thermoplastic Polyurethane Composites</a><span class="pa">S. Jhang†, <b>W. Cho†</b>, S. K. Lee, A. R. Yu, J. G. Lee, K. Jung, Y. Pu, C. G. Yoo, and J. J. Wie*</span><span class="pv"><i>Cellulose</i> 30, 6917-6931 (2023).</span> <span class="role">Co-first author</span></li>
-<li id="p-10-1002-advs-202304715" class="pub" data-lead="0"><a class="pt" href="https://doi.org/10.1002/advs.202304715">Steerable and Agile Light-Fueled Rolling Locomotors by Curvature-Engineered Torsional Torque</a><span class="pa">J.-C. Choi, J. Jeon, J.-W. Lee, A. Nauman, J. G. Lee, <b>W. Cho</b>, C. Lee, Y.-M. Cho, J. J. Wie*, and H.-R. Kim*</span><span class="pv"><i>Advanced Science</i> 10, 2304715 (2023).</span> <span class="pnote">Front cover article.</span></li>
+<li id="p-10-1016-j-nanoen-2023-108953" class="pub lead" data-lead="1"><span class="num">[13]</span><a class="pt" href="https://doi.org/10.1016/j.nanoen.2023.108953">Multi-Functional Locomotion of Collectively Assembled Shape-Reconfigurable Electronics</a><span class="pa"><b>W. Cho†</b>, D. J. Kang†, M. J. Hahm, J. Jeon, D.-G. Kim, Y. S. Kim, T. H. Han*, and J. J. Wie*</span><span class="pv"><i>Nano Energy</i> 118, 108953 (2023).</span> <span class="role">Co-first author</span><span class="pnote">Featured in Phys.org.</span></li>
+<li id="p-10-1016-j-eurpolymj-2023-112579" class="pub" data-lead="0"><span class="num">[12]</span><a class="pt" href="https://doi.org/10.1016/j.eurpolymj.2023.112579">Curing Kinetics and Structure-Property Relationship of Moisture-Cured One-Component Polyurethane Adhesives</a><span class="pa">H. Moon, J. E. Park, <b>W. Cho</b>, J. Jeon, and J. J. Wie*</span><span class="pv"><i>European Polymer Journal</i> 201, 112579 (2023).</span> </li>
+<li id="p-10-1002-adom-202202432" class="pub lead" data-lead="1"><span class="num">[11]</span><a class="pt" href="https://doi.org/10.1002/adom.202202432">A Microphase Separation Strategy for the Infrared Transparency-Thermomechanical Property Conundrum in Sulfur-Rich Copolymers</a><span class="pa">J. H. Hwang†, S. H. Kim†, <b>W. Cho†</b>, W. Lee, S. Park, Y. S. Kim, J.-C. Lee, K. J. Lee*, J. J. Wie*, and D.-G. Kim*</span><span class="pv"><i>Advanced Optical Materials</i> 11, 2202432 (2023).</span> <span class="role">Co-first author</span><span class="pnote">Inside front cover article.</span></li>
+<li id="p-10-1002-adma-202209377" class="pub lead" data-lead="1"><span class="num">[10]</span><a class="pt" href="https://doi.org/10.1002/adma.202209377">Highly Sensitive and Cost-Effective Polymeric-Sulfur-Based Mid-Wavelength Infrared Linear Polarizers with Tailored Fabry-Perot Resonance</a><span class="pa"><b>W. Cho†</b>, J. Hwang†, S. Y. Lee†, J. Park, N. Han, C. H. Lee, S.-W. Kang, A. Urbas, J. O. Kim, Z. Ku*, and J. J. Wie*</span><span class="pv"><i>Advanced Materials</i> 35, 2209377 (2023).</span> <span class="role">Co-first author</span><span class="pnote">Featured in Phys.org.</span></li>
+<li id="p-10-1039-d2py01390h" class="pub lead" data-lead="1"><span class="num">[9]</span><a class="pt" href="https://doi.org/10.1039/d2py01390h">Enhancement of Thermomechanical Properties of Sulfur-Rich Polymers by Post-Thermal Treatment</a><span class="pa">N. Han†, <b>W. Cho†</b>, J. H. Hwang, S. Won, D.-G. Kim*, and J. J. Wie*</span><span class="pv"><i>Polymer Chemistry</i> 14, 943-951 (2023).</span> <span class="role">Co-first author</span><span class="pnote">Invited themed collection.</span></li>
+<li id="p-10-1007-s10570-023-05335-0" class="pub lead" data-lead="1"><span class="num">[8]</span><a class="pt" href="https://doi.org/10.1007/s10570-023-05335-0">Functional Group Effect of Chemically Modified Microcrystalline Methyl Cellulose on Thermoplastic Polyurethane Composites</a><span class="pa">S. Jhang†, <b>W. Cho†</b>, S. K. Lee, A. R. Yu, J. G. Lee, K. Jung, Y. Pu, C. G. Yoo, and J. J. Wie*</span><span class="pv"><i>Cellulose</i> 30, 6917-6931 (2023).</span> <span class="role">Co-first author</span></li>
+<li id="p-10-1002-advs-202304715" class="pub" data-lead="0"><span class="num">[7]</span><a class="pt" href="https://doi.org/10.1002/advs.202304715">Steerable and Agile Light-Fueled Rolling Locomotors by Curvature-Engineered Torsional Torque</a><span class="pa">J.-C. Choi, J. Jeon, J.-W. Lee, A. Nauman, J. G. Lee, <b>W. Cho</b>, C. Lee, Y.-M. Cho, J. J. Wie*, and H.-R. Kim*</span><span class="pv"><i>Advanced Science</i> 10, 2304715 (2023).</span> <span class="pnote">Front cover article.</span></li>
 </ol></div>
 <div class="yr" data-year><h3 class="yr-h">2022</h3><ol class="plist">
-<li id="p-10-1016-j-mattod-2022-04-003" class="pub" data-lead="0"><a class="pt" href="https://doi.org/10.1016/j.mattod.2022.04.003">Light-Triggered Autonomous Shape-Reconfigurable and Locomotive Rechargeable Power Sources</a><span class="pa">K. Lee†, J. Jeon†, <b>W. Cho</b>, S.-W. Kim, H. Moon, J. J. Wie*, and S. Lee*</span><span class="pv"><i>Materials Today</i> 55, 56-65 (2022).</span> </li>
-<li id="p-10-1021-acsmacrolett-1c00772" class="pub" data-lead="0"><a class="pt" href="https://doi.org/10.1021/acsmacrolett.1c00772">Height-Tunable Replica Molding Using Viscous Polymeric Resins</a><span class="pa">J. Jeon, H. Choi, <b>W. Cho</b>, J. Hong, J. H. Youk*, and J. J. Wie*</span><span class="pv"><i>ACS Macro Letters</i> 11, 428-433 (2022).</span> <span class="pnote">Supplementary cover article.</span></li>
+<li id="p-10-1016-j-mattod-2022-04-003" class="pub" data-lead="0"><span class="num">[6]</span><a class="pt" href="https://doi.org/10.1016/j.mattod.2022.04.003">Light-Triggered Autonomous Shape-Reconfigurable and Locomotive Rechargeable Power Sources</a><span class="pa">K. Lee†, J. Jeon†, <b>W. Cho</b>, S.-W. Kim, H. Moon, J. J. Wie*, and S. Lee*</span><span class="pv"><i>Materials Today</i> 55, 56-65 (2022).</span> <span class="pnote">Featured in MaterialsToday.com.</span></li>
+<li id="p-10-1021-acsmacrolett-1c00772" class="pub" data-lead="0"><span class="num">[5]</span><a class="pt" href="https://doi.org/10.1021/acsmacrolett.1c00772">Height-Tunable Replica Molding Using Viscous Polymeric Resins</a><span class="pa">J. Jeon, H. Choi, <b>W. Cho</b>, J. Hong, J. H. Youk*, and J. J. Wie*</span><span class="pv"><i>ACS Macro Letters</i> 11, 428-433 (2022).</span> <span class="pnote">Supplementary cover article.</span></li>
 </ol></div>
 <div class="yr" data-year><h3 class="yr-h">2021</h3><ol class="plist">
-<li id="p-10-1002-adfm-202102106" class="pub lead" data-lead="1"><a class="pt" href="https://doi.org/10.1002/adfm.202102106">Photo-Triggered Shape Reconfiguration in Stretchable Reduced Graphene Oxide-Patterned Azobenzene-Functionalized Liquid Crystalline Polymer Networks</a><span class="pa"><b>W. Cho†</b>, J. Jeon†, W. Eom, J. G. Lee, D.-G. Kim, Y. S. Kim, T. H. Han*, and J. J. Wie*</span><span class="pv"><i>Advanced Functional Materials</i> 31, 2102106 (2021).</span> <span class="role">Co-first author</span></li>
-<li id="p-10-1016-j-mattod-2021-04-014" class="pub" data-lead="0"><a class="pt" href="https://doi.org/10.1016/j.mattod.2021.04.014">Continuous and Programmable Photomechanical Jumping of Polymer Monoliths</a><span class="pa">J. Jeon†, J.-C. Choi†, H. Lee, <b>W. Cho</b>, K. Lee, J. G. Kim, J.-W. Lee, K.-I. Joo, M. Cho*, H.-R. Kim*, and J. J. Wie*</span><span class="pv"><i>Materials Today</i> 49, 97-106 (2021).</span> <span class="pnote">Inner cover article.</span></li>
-<li id="p-10-1002-pol-20210311" class="pub" data-lead="0"><a class="pt" href="https://doi.org/10.1002/pol.20210311">Fabrication and Applications of Stimuli-Responsive Micro/Nanopillar Arrays</a><span class="pa">J. E. Park, S. Won, <b>W. Cho</b>, J. G. Kim, S. Jhang, J. G. Lee, and J. J. Wie*</span><span class="pv"><i>Journal of Polymer Science</i> 59, 1491-1517 (2021).</span> <span class="pnote">Invited review.</span></li>
+<li id="p-10-1002-adfm-202102106" class="pub lead" data-lead="1"><span class="num">[4]</span><a class="pt" href="https://doi.org/10.1002/adfm.202102106">Photo-Triggered Shape Reconfiguration in Stretchable Reduced Graphene Oxide-Patterned Azobenzene-Functionalized Liquid Crystalline Polymer Networks</a><span class="pa"><b>W. Cho†</b>, J. Jeon†, W. Eom, J. G. Lee, D.-G. Kim, Y. S. Kim, T. H. Han*, and J. J. Wie*</span><span class="pv"><i>Advanced Functional Materials</i> 31, 2102106 (2021).</span> <span class="role">Co-first author</span><span class="pnote">Featured in Phys.org.</span></li>
+<li id="p-10-1016-j-mattod-2021-04-014" class="pub" data-lead="0"><span class="num">[3]</span><a class="pt" href="https://doi.org/10.1016/j.mattod.2021.04.014">Continuous and Programmable Photomechanical Jumping of Polymer Monoliths</a><span class="pa">J. Jeon†, J.-C. Choi†, H. Lee, <b>W. Cho</b>, K. Lee, J. G. Kim, J.-W. Lee, K.-I. Joo, M. Cho*, H.-R. Kim*, and J. J. Wie*</span><span class="pv"><i>Materials Today</i> 49, 97-106 (2021).</span> <span class="pnote">Inner cover article; Featured in Phys.org.</span></li>
+<li id="p-10-1002-pol-20210311" class="pub" data-lead="0"><span class="num">[2]</span><a class="pt" href="https://doi.org/10.1002/pol.20210311">Fabrication and Applications of Stimuli-Responsive Micro/Nanopillar Arrays</a><span class="pa">J. E. Park, S. Won, <b>W. Cho</b>, J. G. Kim, S. Jhang, J. G. Lee, and J. J. Wie*</span><span class="pv"><i>Journal of Polymer Science</i> 59, 1491-1517 (2021).</span> <span class="pnote">Invited review.</span></li>
 </ol></div>
 <div class="yr" data-year><h3 class="yr-h">2020</h3><ol class="plist">
-<li id="p-10-1002-admt-202000758" class="pub lead" data-lead="1"><a class="pt" href="https://doi.org/10.1002/admt.202000758">Programmable Building Blocks via Internal Stress Engineering for 3D Collective Assembly</a><span class="pa"><b>W. Cho</b>, D. Y. Hahm, J. H. Yim, J. H. Lee, Y. J. Lee, D.-G. Kim, Y. S. Kim, and J. J. Wie*</span><span class="pv"><i>Advanced Materials Technologies</i> 5, 2000758 (2020).</span> <span class="role">First author</span><span class="pnote">Front cover article.</span></li>
+<li id="p-10-1002-admt-202000758" class="pub lead" data-lead="1"><span class="num">[1]</span><a class="pt" href="https://doi.org/10.1002/admt.202000758">Programmable Building Blocks via Internal Stress Engineering for 3D Collective Assembly</a><span class="pa"><b>W. Cho</b>, D. Y. Hahm, J. H. Yim, J. H. Lee, Y. J. Lee, D.-G. Kim, Y. S. Kim, and J. J. Wie*</span><span class="pv"><i>Advanced Materials Technologies</i> 5, 2000758 (2020).</span> <span class="role">First author</span><span class="pnote">Front cover article.</span></li>
 </ol></div>
 </div>
-<p class="empty" data-empty hidden>No publications match that search.</p>
-<h2 id="patents" style="margin-top:4rem">Patents</h2>
-<div class="pat">
-<div><h3>Granted</h3><ol><li><b>Mid-Wavelength Infrared Polarizer Based on Sulfur-Containing Polymer and Manufacturing Method Thereof</b><span>Patent No. 10-2940899, Republic of Korea, 2026</span></li><li><b>Preparation Method of Sulfur-Rich Polymer Using Inverse Vulcanization and Vacuum Assisted Thermal Treatment</b><span>Patent No. 10-2957615, Republic of Korea, 2026</span></li></ol></div>
-<div><h3>Pending and filed</h3><ol><li><b>Sulfur-Containing Polymer Composites, Preparation Method and Triboelectric Generator Using The Same</b><span>Application No. 10-2024-0073750, Republic of Korea, 2024</span></li><li><b>Vacuum-Assisted Thermal Treatment of Sulfur-Rich Polymers and Infrared Optical Article</b><span>Application No. 10-2026-0049911, Republic of Korea, 2026</span></li><li><b>Magnetically Actuated Microtextured Polymer Composite Structure</b><span>Application No. 10-2026-0064515, Republic of Korea, 2026</span></li><li><b>Polymer Composite Structure Having Magnetically Driven Microstructure</b><span>U.S. Application No. 19.687,112, filed May 26, 2026</span></li></ol></div>
-</div>
+<p class="note" data-empty hidden>No publications match that search.</p>
+<h3 class="sub" id="inprep">In preparation</h3>
+<ol class="plist prep"><li class="pub lead"><span class="pt-plain">Deborah-Number-Governed Surface Roughness Engineering of Sulfur-Rich Polymer Film for High-Performance Triboelectric Nanogenerators</span><span class="pa"><b>W. Cho†</b>, M. J. Bak†, S. Kim, M. J. Hahm, and J. J. Wie*</span><span class="pnote">To be submitted.</span></li><li class="pub lead"><span class="pt-plain">Thermally Stable Bulk Longwave Infrared Windows from Sulfur-Rich Polymers for Aerial Thermal Imaging via Kinetics-Controlled Vacuum-Assisted Thermal Treatment</span><span class="pa">S. B. Park†, <b>W. Cho†</b>, M. Lee, S. Kim, G. Y. Bae, N.-H. You, and J. J. Wie*</span><span class="pnote">To be submitted (invited article).</span></li></ol>
+<h3 class="sub" id="patents">Patents</h3>
+<div class="pat"><div><h3>Granted</h3><ol><li><b>Mid-Wavelength Infrared Polarizer Based on Sulfur-Containing Polymer and Manufacturing Method Thereof</b><span>Patent No. 10-2940899, Republic of Korea, 2026</span></li><li><b>Preparation Method of Sulfur-Rich Polymer Using Inverse Vulcanization and Vacuum Assisted Thermal Treatment</b><span>Patent No. 10-2957615, Republic of Korea, 2026</span></li></ol></div><div><h3>Pending and filed</h3><ol><li><b>Sulfur-Containing Polymer Composites, Preparation Method and Triboelectric Generator Using The Same</b><span>Application No. 10-2024-0073750, Republic of Korea, 2024</span></li><li><b>Vacuum-Assisted Thermal Treatment of Sulfur-Rich Polymers and Infrared Optical Article</b><span>Application No. 10-2026-0049911, Republic of Korea, 2026</span></li><li><b>Magnetically Actuated Microtextured Polymer Composite Structure</b><span>Application No. 10-2026-0064515, Republic of Korea, 2026</span></li><li><b>Polymer Composite Structure Having Magnetically Driven Microstructure</b><span>U.S. Application No. 19.687,112, filed May 26, 2026</span></li></ol></div></div>
 </section>
-<!-- ================= GALLERY ================= -->
-<section class="view" id="gallery" aria-labelledby="h-gal">
-<h2 id="h-gal">Gallery</h2>
-<h3 class="sub" style="margin-top:0">Journal covers</h3>
-<ul class="gcov"><li><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adma.202507057"><img src="assets/covers/adma-2025-37-44-cover.jpg" width="520" height="683" loading="lazy" decoding="async" alt="Advanced Materials 2025 cover: Closed-loop sustainable 4D printing"></a><span class="cj">Advanced Materials 2025</span><span class="cc">Closed-loop sustainable 4D printing</span></li><li><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adma.202503161"><img src="assets/covers/adma-2025-37-39-cover.jpg" width="520" height="683" loading="lazy" decoding="async" alt="Advanced Materials 2025 cover: Light-fueled magnetic reconfiguration"></a><span class="cj">Advanced Materials 2025</span><span class="cc">Light-fueled magnetic reconfiguration</span></li><li><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adma.202470354"><img src="assets/covers/adma-2024-36-44-cover.jpg" width="520" height="683" loading="lazy" decoding="async" alt="Advanced Materials 2024 cover: Sulfur-rich polymer/MXene TENG"></a><span class="cj">Advanced Materials 2024</span><span class="cc">Sulfur-rich polymer/MXene TENG</span></li><li><a href="https://pubs.acs.org/doi/10.1021/accountsmr.4c00039"><img src="assets/covers/amr-2024-5-5-supplementary-cover.jpg" width="520" height="683" loading="lazy" decoding="async" alt="Accounts of Materials Research 2024 cover: Waste-sulfur valorization"></a><span class="cj">Accounts of Materials Research 2024</span><span class="cc">Waste-sulfur valorization</span></li><li><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adom.202370014"><img src="assets/covers/adom-2023-11-5-cover.jpg" width="520" height="683" loading="lazy" decoding="async" alt="Advanced Optical Materials 2023 cover: Sulfur-rich infrared optics"></a><span class="cj">Advanced Optical Materials 2023</span><span class="cc">Sulfur-rich infrared optics</span></li><li><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/advs.202370201"><img src="assets/covers/advs-2023-10-30-cover.jpg" width="520" height="683" loading="lazy" decoding="async" alt="Advanced Science 2023 cover: Light-fueled rolling locomotors"></a><span class="cj">Advanced Science 2023</span><span class="cc">Light-fueled rolling locomotors</span></li><li><a href="https://pubs.acs.org/doi/10.1021/acsmacrolett.1c00772"><img src="assets/covers/acs-macro-letters-2022-supplementary-cover.jpg" width="520" height="683" loading="lazy" decoding="async" alt="ACS Macro Letters 2022 cover: Height-tunable replica molding"></a><span class="cj">ACS Macro Letters 2022</span><span class="cc">Height-tunable replica molding</span></li><li><a href="https://www.sciencedirect.com/science/article/pii/S1369702121001838"><img src="assets/covers/materials-today-2021-inner-cover-pdf.png" width="520" height="683" loading="lazy" decoding="async" alt="Materials Today 2021 cover: Photomechanical jumping monoliths"></a><span class="cj">Materials Today 2021</span><span class="cc">Photomechanical jumping monoliths</span></li><li><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/admt.202070070"><img src="assets/covers/admt-2020-5-12-cover.jpg" width="520" height="683" loading="lazy" decoding="async" alt="Advanced Materials Technologies 2020 cover: Programmable building blocks"></a><span class="cj">Advanced Materials Technologies 2020</span><span class="cc">Programmable building blocks</span></li></ul>
-<h3 class="sub">Awards</h3>
+<section class="view" id="talks" aria-labelledby="h-talks">
+<h2 id="h-talks">Talks and presentations</h2>
+<h3 class="sub">Invited talks and seminars</h3>
+<ol class="nlist"><li><span>“Processing–Structure–Properties Relationships in Polymer Composites: From Commercial Thermoplastics to Multi-functional Polymer Systems,” Korea Research Institute of Chemical Technology (KRICT), Advanced Functional Polymers Research Center, Republic of Korea, 03/2026.</span></li><li><span>“Liquid Crystalline Polymer/2D material Bilayers for Electrically Conductive, Shape-Reconfigurable Systems,” Korea Liquid Crystal Conference, Young Investigator Oral Presentation, Republic of Korea, 11/2025.</span></li></ol>
+<h3 class="sub">Selected conference presentations</h3>
+<ol class="nlist"><li><span>“Segregated Structure Engineered Sulfur-Rich Polymer/MXene Composites for High-Performance Triboelectric Nanogenerator,” American Chemical Society (ACS) Fall 2025, Washington D.C., 08/2025.</span></li><li><span>“Collectively Architectured Liquid Crystalline Elastomer/MXene Composites for Multi-functional Shape-Reconfigurable Electronics,” The 7th International Conference on Active Materials and Soft Mechatronics (2024 AMSM), 10/2024. <span class="award">Excellent Student Oral Presentation Award</span></span></li><li><span>“High-Performance Triboelectric Nanogenerator Based on Sulfur-Rich Polymer/MXene Composites for Value-Addition of Waste Sulfur,” American Chemical Society (ACS) Fall 2024, Denver, 08/2024.</span></li><li><span>“Sustainable and High-Performance Triboelectric Nanogenerator Based on Sulfur-Rich Polymer/MXene Composites,” 2024 Materials Research Society (MRS) Spring Meeting &amp; Exhibit, Seattle, 04/2024.</span></li><li><span>“Reusable yet High-Performance Triboelectric Nanogenerators by Sulfur-Rich Polymer/MXene Composites,” 2024 Polymer Society of Korea (PSK) Spring Meeting, 04/2024. <span class="award">Excellent Student Oral (English) Presentation Award</span></span></li><li><span>“3D Shape-Reconfigurable and Locomotive Electronics Based on Physical Intelligence-Encoded Polymer Composites,” 2023 Materials Research Society (MRS) Fall Meeting &amp; Exhibit, Boston, 11/2023.</span></li><li><span>“Highly Sensitive Mid-Wavelength Infrared Linear Polarizers Based on Waste from Petroleum Refining Process,” 2023 Materials Research Society (MRS) Fall Meeting &amp; Exhibit, Boston, 11/2023.</span></li><li><span>“Functional Group Effects of Micro Crystalline Methyl Cellulose on Eco-Polymer Composites,” 2023 Polymer Society of Korea (PSK) Fall Meeting, 10/2023. <span class="award">Honorable Mention (Poster presentation)</span></span></li><li><span>“2D MXene Embedded Sulfur-Rich Polymer for High-Performance Triboelectric Negative Material,” 2023 Materials Research Society (MRS) Spring Meeting &amp; Exhibit, San Francisco, 04/2023. <span class="award">Best Poster Award Nominee</span></span></li><li><span>“Multi-Functional Locomotion of Shape-Reconfigurable Electronics,” The 23rd Korea Liquid Crystal Conference organized by Korean Information Display Society (KiDS), 02/2023. <span class="award">Excellent Student Oral Presentation Award</span></span></li><li><span>“Soft-Robotic Actuations of Collectively Assembled Soft-Electronics Based on MXene/Liquid Crystal Elastomer Bilayer,” 2022 Materials Research Society (MRS) Fall Meeting &amp; Exhibit, Boston, 11/2022.</span></li><li><span>“High optical performance of Polymeric Sulfur Based Mid-Wavelength Infrared Linear Polarizers,” 2022 Materials Research Society (MRS) Spring Meeting &amp; Exhibit, Honolulu, 05/2022.</span></li><li><span>“Light-Triggered Shape-Reconfiguration of Programmable and Stretchable Electronics with Enhanced Mechanical and Actuation Performance,” The 6th International Conference on Advanced Electromaterials (ICAE), 11/2021. <span class="award">Best Poster Award (Gold Prize)</span></span></li><li><span>“Multi-Stimuli Responsive Reduced Graphene Oxide Patterned Azo-Liquid Crystalline Polymer Networks for Stretchable Electronics with Tailored Morphologies,” 2021 Virtual Materials Research Society (MRS) Fall Meeting &amp; Exhibit, 11/2021.</span></li><li><span>“Stretchable Electronics with Light-Triggered Shape-Reconfiguration: Reduced Graphene Oxide Patterned Azo-Liquid Crystalline Polymer Networks with Enhanced Mechanical and Actuating Performance,” American Chemical Society (ACS) Fall 2021 National Meeting, 08/2021.</span></li><li><span>“Multi-Stimuli Responsive and Electrically Conducting rGO Patterned Azo-LCN for Enhanced Mechanical Stiffness Simultaneously with High Deformability,” The 48th World Polymer Congress, IUPAC-MACRO2020+ organized by Polymer Society of Korea (PSK), 05/2021.</span></li><li><span>“Shape Controllable Building Blocks for 3D Collective Assembly via Residual Stress Engineering,” 2021 Virtual Materials Research Society (MRS) Spring Meeting &amp; Exhibit, 04/2021.</span></li><li><span>“Shape-reconfigurable rGO patterned azo-LCN with tailored mechanical and electrical properties,” 2021 Polymer Society of Korea (PSK) Spring Meeting, 04/2021.</span></li><li><span>“Reconfigurable Azo-LCN/rGO nanocomposites with Tailorable Mechanical and Electrical Properties,” 2020 Virtual Materials Research Society (MRS) Spring/Fall meeting &amp; Exhibit, 11/2020.</span></li></ol>
+</section>
+<section class="view" id="awards" aria-labelledby="h-awards">
+<h2 id="h-awards">Awards and honors</h2>
+<ul class="line"><li><time>05/2026</time><span>Wiley Top Viewed Article, Advanced Materials</span></li><li><time>04/2025</time><span>Prof. Choi Sam Kwon Ph.D. Dissertation Award, Polymer Society of Korea (PSK)</span></li><li><time>03/2025</time><span>Outstanding Research Achievement Award (Conference Presentation Division), Hanyang University</span></li><li><time>02/2025</time><span>Ph.D. Dissertation Award, Hanyang University</span></li><li><time>02/2025</time><span>Ph.D. Dissertation Award, The Research Institute of Industrial Science, Hanyang University</span></li><li><time>10/2024</time><span>Excellent Student Oral Presentation Award, The 7th International Conference on Active Materials and Soft Mechatronics (2024 AMSM)</span></li><li><time>04/2024</time><span>Excellent Oral (English) Presentation Award, 2024 Polymer Society of Korea (PSK) Spring Meeting</span></li><li><time>02/2024</time><span>Outstanding Research Achievement Award (Publication Division), Hanyang University</span></li><li><time>02/2024</time><span>Brain Korea (BK) 21 Capstone Design-Excellent Award, Hanyang University</span></li><li><time>01/2024</time><span>Outstanding Discussant Award, The 24th Korea Liquid Crystal Conference</span></li><li><time>10/2023</time><span>Honorable Mention (Poster presentation), 2023 Polymer Society of Korea (PSK) Fall Meeting</span></li><li><time>04/2023</time><span>Best Poster Award Nominee, 2023 Materials Research Society (MRS) Spring Meeting &amp; Exhibit</span></li><li><time>02/2023</time><span>Excellent Oral Presentation Award, The 23rd Korea Liquid Crystal Conference</span></li><li><time>11/2021</time><span>Best Poster Award, The 6th International Conference on Advanced Electromaterials (ICAE)</span></li><li><time>04/2021</time><span>Best Oral Presentation Award, 2021 Polymer Society of Korea (PSK) Spring Meeting</span></li></ul>
+<h3 class="sub">Photos</h3>
 <div class="gaw">
-<figure><div class="imgs"><img src="assets/news/am-top-viewed-certificate.png" loading="lazy" alt="Wiley Top Viewed Article certificate"></div>
-<figcaption><time>2026</time>Wiley Top Viewed Article, <i>Advanced Materials</i></figcaption></figure>
-<figure><div class="imgs"><img src="assets/news/psk-dissertation-award.png" loading="lazy" alt="Prof. Choi Sam Kwon Ph.D. Dissertation Award ceremony and certificate"></div>
-<figcaption><time>2025</time>Prof. Choi Sam Kwon Ph.D. Dissertation Award, Polymer Society of Korea</figcaption></figure>
-<figure><div class="imgs"><img src="assets/news/hanyang-phd-dissertation-award.png" loading="lazy" alt="Hanyang University Ph.D. Dissertation Award plaque"><img src="assets/news/riis-best-paper-award.png" loading="lazy" alt="Research Institute of Industrial Science Best Paper Award plaque"></div>
-<figcaption><time>2025</time>Ph.D. Dissertation Awards, Hanyang University</figcaption></figure>
-<figure><div class="imgs"><img src="assets/news/hanyang-research-presentation-award.png" loading="lazy" alt="Hanyang University Outstanding Research Achievement Award certificate"><img src="assets/news/hanyang-research-paper-award.png" loading="lazy" alt="Hanyang University Outstanding Research Achievement Award for paper certificate"></div>
-<figcaption><time>2024–2025</time>Outstanding Research Achievement Awards, Hanyang University</figcaption></figure>
+<figure><div class="imgs"><img src="assets/news/am-top-viewed-certificate.png" loading="lazy" alt="Wiley Top Viewed Article certificate"></div><figcaption>Wiley Top Viewed Article, 2026</figcaption></figure>
+<figure><div class="imgs"><img src="assets/news/psk-dissertation-award.png" loading="lazy" alt="Prof. Choi Sam Kwon Ph.D. Dissertation Award ceremony and certificate"></div><figcaption>PSK Ph.D. Dissertation Award, 2025</figcaption></figure>
+<figure><div class="imgs"><img src="assets/news/hanyang-phd-dissertation-award.png" loading="lazy" alt="Hanyang University Ph.D. Dissertation Award plaque"><img src="assets/news/riis-best-paper-award.png" loading="lazy" alt="Research Institute of Industrial Science award plaque"></div><figcaption>Hanyang University dissertation awards, 2025</figcaption></figure>
+<figure><div class="imgs"><img src="assets/news/hanyang-research-presentation-award.png" loading="lazy" alt="Outstanding Research Achievement Award certificate, presentation division"><img src="assets/news/hanyang-research-paper-award.png" loading="lazy" alt="Outstanding Research Achievement Award certificate, publication division"></div><figcaption>Outstanding Research Achievement Awards, Hanyang University</figcaption></figure>
 </div>
 </section>
-<!-- ================= CONTACT ================= -->
-<section class="view" id="contact" aria-labelledby="h-contact">
-<h2 id="h-contact">Contact</h2>
-<div class="contact">
-<address><a href="mailto:woongbi@stanford.edu">woongbi@stanford.edu</a><br><br>Department of Mechanical Engineering<br>Stanford University<br>438 Panama St, Stanford, CA 94305</address>
-<ul>
-<li><a href="Woongbi_Cho_CV.pdf">CV (PDF)</a></li>
-<li><a href="https://scholar.google.com/citations?user=oCeRWgoAAAAJ&amp;hl=en">Google Scholar</a></li>
-<li><a href="https://orcid.org/0000-0002-1057-9568">ORCID</a></li>
-<li><a href="https://www.linkedin.com/in/woongbi-cho-2461a8254">LinkedIn</a></li>
-<li><a href="https://zhaolab.stanford.edu/">SIM Lab</a></li>
-<li><a href="https://sites.google.com/hanyang.ac.kr/wie">AMRL, Hanyang</a></li>
-</ul>
-</div>
+<section class="view" id="activities" aria-labelledby="h-act">
+<h2 id="h-act">Professional activities</h2>
+<h3 class="sub">Journal reviewing</h3>
+<p>Ad hoc reviewer for <i>Nature Communications</i>, <i>Materials Today</i>, <i>Materials Horizons</i>, <i>Sensors and Actuators B: Chemical</i>, <i>Laser &amp; Photonics Reviews</i>, <i>Macromolecular Bioscience</i>, <i>Micromachines</i>, <i>Applied Sciences</i>, <i>Nanomaterials</i>.</p>
+<h3 class="sub">Research projects</h3>
+<p class="note" style="margin-top:0">Funded projects I contributed to during my graduate and postdoctoral research (14).</p>
+<ul class="line"><li><time>01/2023–12/2024</time><span><b>Flexible and Wearable Triboelectric Devices Based on Polymeric Sulfur/MXene Composites</b><br><span class="muted">U.S. Army International Technology Center Pacific (U.S. Army/USA)</span></span></li><li><time>09/2022–09/2024</time><span><b>Magneto-Mechanically Reconfigurable Metasurface</b><br><span class="muted">Asian Office of Aerospace Research and Development, U.S. Air Force Office of Scientific Research (AOARD/USA)</span></span></li><li><time>09/2018–09/2021</time><span><b>Reversibly Reconfigurable 3D Micro- and Nanophotonic Devices by Magnetically Programmable Polymeric Composites</b><br><span class="muted">Asian Office of Aerospace Research and Development, U.S. Air Force Office of Scientific Research (AOARD/USA)</span></span></li><li><time>04/2023–06/2024</time><span><b>Development of a 3D Mapping Process for Crosslinking Density to Improve Glass Adhesive Performance</b><br><span class="muted">Hyundai Motor Group (KOR)</span></span></li><li><time>09/2021–09/2022</time><span><b>Development of Curing Behavior and Degree-of-Cure Measurement Methods for Moisture-Curable DGU Glass Adhesives</b><br><span class="muted">Hyundai Motor Group (KOR)</span></span></li><li><time>07/2020–02/2023</time><span><b>Contact Electrification Basic Research Laboratory</b><br><span class="muted">National Research Foundation of Korea (NRF/KOR)</span></span></li><li><time>04/2020–12/2024</time><span><b>Development of High-Refractive-Index, Infrared-Transparent Sulfur-Containing Optical Polymeric Materials and Application Technologies for the Sensor Market</b><br><span class="muted">Ministry of Trade, Industry and Energy and Korea Evaluation Institute of Industrial Technology (MOTIE/KEIT/KOR)</span></span></li><li><time>09/2019–12/2022</time><span><b>FDM-Based Multimaterial 4D Printing and Structural Design for Vitrimer Composites</b><br><span class="muted">National Research Foundation of Korea (NRF/KOR)</span></span></li><li><time>01/2024–12/2024</time><span><b>Liquid Crystal Vitrimer-Based Physical Intelligence-Embedded Toxic Gas Detection Sensor</b><br><span class="muted">Korea Research Institute of Chemical Technology (KRICT/KOR)</span></span></li><li><time>01/2023–12/2023</time><span><b>Photo/Magneto-Responsive Multifunctional Actuation of Collectively Assembled Liquid Crystalline Polymers</b><br><span class="muted">Korea Research Institute of Chemical Technology (KRICT/KOR)</span></span></li><li><time>01/2022–12/2022</time><span><b>Programmable Liquid Crystalline Polymer Composites for Multifunctional Soft Actuators</b><br><span class="muted">Korea Research Institute of Chemical Technology (KRICT/KOR)</span></span></li><li><time>01/2021–12/2021</time><span><b>Stimuli-Responsive 3D Shape-Reconfigurable Electrically Conductive Polymer Composites</b><br><span class="muted">Korea Research Institute of Chemical Technology (KRICT/KOR)</span></span></li><li><time>01/2020–12/2020</time><span><b>Collective Assembly for 3D Hierarchical Structures through Residual Stress Engineering</b><br><span class="muted">Korea Research Institute of Chemical Technology (KRICT/KOR)</span></span></li><li><time>01/2019–12/2019</time><span><b>Multi-Stimuli-Responsive Liquid Crystalline Polymer Nanocomposites</b><br><span class="muted">Korea Research Institute of Chemical Technology (KRICT/KOR)</span></span></li></ul>
+</section>
+<section class="view" id="cv" aria-labelledby="h-cv">
+<h2 id="h-cv">CV</h2>
+<a class="cvbtn" href="Woongbi_Cho_CV.pdf">Download CV (PDF)</a>
+<h3 class="sub">Experience and education</h3>
+<ul class="line"><li><time>05/2026 – present</time><span><b>Postdoctoral Scholar in Mechanical Engineering</b><br><span class="muted">Stanford University, Stanford, CA. Advisor: Prof. Ruike Renee Zhao, Soft Intelligent Materials Laboratory.</span></span></li><li><time>03/2025 – 04/2026</time><span><b>Postdoctoral Research Fellow in Organic and Nano Engineering</b><br><span class="muted">Hanyang University, Seoul. Advisor: Prof. Jeong Jae Wie, Advanced Materials Research Laboratory.</span></span></li><li><time>09/2022 – 02/2025</time><span><b>Ph.D. in Organic and Nano Engineering</b><br><span class="muted">Hanyang University. Advisor: Prof. Jeong Jae Wie. <a href="assets/woongbi-cho-dissertation.pdf">Dissertation</a>: <i>Liquid Crystalline Polymer Composites-Based 3D Shape-Reconfigurable Platform of Locomotive Electronics</i>.</span></span></li><li><time>03/2019 – 08/2022</time><span><b>Ph.D. studies in Environmental and Polymer Engineering</b><br><span class="muted">Inha University. Transferred to Hanyang University in 09/2022 following Prof. J. J. Wie’s relocation.</span></span></li><li><time>03/2013 – 02/2019</time><span><b>B.S. in Polymer Science and Engineering</b><br><span class="muted">Inha University. Magna cum laude.</span></span></li></ul>
+<h3 class="sub">Contact</h3>
+<p>Department of Mechanical Engineering, Stanford University<br>438 Panama St, Stanford, CA 94305<br><a href="mailto:woongbi@stanford.edu">woongbi@stanford.edu</a></p>
 </section>
 </main>
-<footer class="foot"><div class="foot-in"><span>© 2026 Woongbi Cho, Stanford University</span><a href="mailto:woongbi@stanford.edu">woongbi@stanford.edu</a></div></footer>
+</div>
+<footer class="foot"><div class="foot-in">© 2026 Woongbi Cho</div></footer>
 <script>
 (function(){
 // publication filter + search
