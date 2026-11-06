@@ -67,6 +67,10 @@ h3{font:600 1.05rem/1.35 var(--sans);margin:0 0 .4rem}
 .sub{font:600 1.25rem/1.3 var(--serif);margin:3rem 0 1rem}
 .sub:first-of-type{margin-top:0}
 .prose p{margin:0 0 1rem;max-width:44rem;font-size:1.04rem}
+.pillars{margin:0 0 1.1rem;padding-left:1.5rem;max-width:44rem;font-size:1.02rem}
+.pillars li{padding:.3rem 0 .3rem .25rem;line-height:1.55}
+.pillars li::marker{font-weight:600;color:var(--cardinal)}
+.pillars b{font-weight:700}
 .note{font-size:.9rem;color:var(--graphite);margin:-.5rem 0 1.5rem}
 /* home figure grid */
 .figs{list-style:none;margin:2.25rem 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.75rem 1.4rem}
@@ -186,9 +190,14 @@ ol.nlist li::marker{color:var(--cardinal);font-weight:600}
 <section class="view" id="home" aria-labelledby="h-home">
 <h2 id="h-home">About me</h2>
 <div class="prose">
-<p>I am a polymer materials scientist and postdoctoral scholar in the Department of Mechanical Engineering at Stanford University, working in Prof. Ruike Renee Zhao’s Soft Intelligent Materials Laboratory. My research sits at the boundary of soft robotics, polymer chemistry, sustainable materials, and device engineering.</p>
-<p>During my Ph.D. at Hanyang University, I developed shape-reconfigurable liquid crystalline polymer systems, sulfur-rich optical and energy materials, and bio-derived composite processing strategies. These projects share a central idea: materials become more powerful when their chemistry, architecture, and processing history are designed together. At Stanford, I study electromagnetic-driven soft robots, active metamaterials, and polymer assembly mechanisms that translate external fields into useful motion and adaptive function.</p>
-<p>Feel free to reach out about collaboration or research.</p>
+<p>I am a polymer materials scientist and postdoctoral scholar in Mechanical Engineering at Stanford University, working in Prof. Ruike Renee Zhao’s Soft Intelligent Materials Laboratory. My research designs polymer chemistry, microstructure, and processing history together, structured around four directions:</p>
+<ol class="pillars">
+<li><b>Shape-Reconfigurable Devices</b>: Encoding motion, snap-through, and locomotion directly into liquid crystalline polymers, covalent adaptable networks, and stiffness-patterned composites.</li>
+<li><b>Waste-Sulfur Valorization</b>: Converting sulfur from petroleum refining into high-index infrared optics, mid-wavelength infrared polarizers, and PFAS-free triboelectric nanogenerators.</li>
+<li><b>Bio-Derived Polymer Composites</b>: Linking the functional-group chemistry and processing of cellulose and lignin to the structure–property–performance of sustainable composites.</li>
+<li><b>Electromagnetic-Driven Soft Robotics</b> <span class="muted">(current, Stanford)</span>: Designing electromagnetic-driven soft robots, polymer assembly mechanisms, and active metamaterials that translate external fields into motion and adaptive function.</li>
+</ol>
+<p>By bridging polymer chemistry with device engineering, I aim to build materials whose shape, optical, and energy functions can be programmed by design. Feel free to reach out about collaboration or research.</p>
 </div>
 <h3 class="sub" style="margin-top:2.5rem">Professional experiences</h3>
 <ul class="line"><li><time>05/2026 – present</time><span><b>Postdoctoral Scholar in Mechanical Engineering</b><br><span class="muted">Stanford University, Stanford, CA. Advisor: Prof. Ruike Renee Zhao, Soft Intelligent Materials Laboratory.</span></span></li><li><time>03/2025 – 04/2026</time><span><b>Postdoctoral Research Fellow in Organic and Nano Engineering</b><br><span class="muted">Hanyang University, Seoul. Advisor: Prof. Jeong Jae Wie, Advanced Materials Research Laboratory.</span></span></li></ul>
