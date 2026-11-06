@@ -8,14 +8,14 @@
 <meta property="og:title" content="Woongbi Cho, Ph.D.">
 <meta property="og:description" content="Programmable and sustainable polymer materials for soft robotics, active metamaterials, infrared optics, and energy devices.">
 <meta property="og:image" content="assets/woongbi-cho-portrait.jpg">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%238C1515'/><text x='16' y='22' font-family='Georgia,serif' font-size='16' fill='white' text-anchor='middle'>WC</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2314284B'/><text x='16' y='22' font-family='Georgia,serif' font-size='16' fill='white' text-anchor='middle'>WC</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#FFFFFF;--ink:#1C1F23;--graphite:#5B636D;--rule:#E4E6E9;--wash:#F7F4F4;--cardinal:#8C1515;--cardinal-dk:#6E1010;--rose:#F6E7E7;
+:root{--paper:#FFFFFF;--ink:#1C1F23;--graphite:#5B636D;--rule:#E4E6E9;--wash:#F4F6F9;--cardinal:#14284B;--cardinal-dk:#0F1E38;--rose:#E9EEF6;
 --serif:"Newsreader",Georgia,"Times New Roman",serif;--sans:"Public Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color-scheme:light}
-@media (prefers-color-scheme:dark){:root{--paper:#141619;--ink:#E8E9EB;--graphite:#A6ADB5;--rule:#2B2F35;--wash:#1C1A1B;--cardinal:#E39A9A;--cardinal-dk:#5A1212;--rose:#3A2222;color-scheme:dark}}
+@media (prefers-color-scheme:dark){:root{--paper:#141619;--ink:#E8E9EB;--graphite:#A6ADB5;--rule:#2B2F35;--wash:#181C22;--cardinal:#A9BFE6;--cardinal-dk:#12213D;--rose:#1E2A3F;color-scheme:dark}}
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-padding-top:calc(5rem + env(safe-area-inset-top,0px))}
 body{margin:0;background:var(--paper);color:var(--ink);font:400 1rem/1.6 var(--sans);-webkit-font-smoothing:antialiased}
@@ -26,10 +26,10 @@ img{max-width:100%;height:auto;display:block}
 .skip{position:absolute;left:-999px}.skip:focus{left:1rem;top:1rem;background:var(--paper);padding:.5rem 1rem;z-index:20}
 .muted{color:var(--graphite)}
 [hidden]{display:none !important}
-/* top bar */
-.bar{position:sticky;top:0;z-index:5;background:#8C1515;color:#fff;padding-top:env(safe-area-inset-top,0px)}
+/* navy top bar */
+.bar{position:sticky;top:0;z-index:5;background:#14284B;color:#fff;padding-top:env(safe-area-inset-top,0px)}
 @media (prefers-color-scheme:dark){.bar{background:var(--cardinal-dk)}}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:#8C1515}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:#14284B}
 .bar-in{max-width:76rem;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:2rem;height:3.6rem}
 .brand{font:500 1.3rem/1 var(--serif);color:#fff;text-decoration:none;white-space:nowrap}
 .brand:hover{color:#fff}
@@ -37,7 +37,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .tabs::-webkit-scrollbar{display:none}
 .tabs a{display:block;padding:.42rem .8rem;border-radius:4px;font-size:.93rem;font-weight:500;color:rgba(255,255,255,.86);text-decoration:none;white-space:nowrap}
 .tabs a:hover{color:#fff;background:rgba(255,255,255,.12)}
-.tabs a[aria-current="page"]{background:#fff;color:#8C1515}
+.tabs a[aria-current="page"]{background:#fff;color:#14284B}
 .tabs a:focus-visible{outline-color:#fff}
 @media (max-width:820px){.bar-in{flex-direction:column;align-items:stretch;height:auto;gap:0;padding:0}.brand{padding:.85rem 1.25rem .35rem}.tabs{margin:0;padding:0 .9rem .6rem}.tabs a{padding:.38rem .65rem}}
 /* profile column + content */
